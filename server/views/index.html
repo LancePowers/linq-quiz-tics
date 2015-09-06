@@ -4,119 +4,305 @@
 
 
 {% block content %}
-
-<div class="container-fluid base">
-
-    <div class="main">
-      <nav class="navbar navbar-default">
-        <div class="container-fluid blue">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#">linQuiztics</a>
-          </div>
-          <div>
-            <ul class="nav navbar-nav navbar-right">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#">Page 1</a></li>
-              <li><a href="#">Page 2</a></li>
-              <li><a href="#">Page 3</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
-      <!-- this is the left box and entries -->
-      <div class="row">
-        <div class="col-sm-6 col-sm-offset-1 left">
-          <div class="word center">
-            <p id="question-word"> WORD</p>
-          </div>
-          <div class="user-guess">
-            <input id="user-answer" class="user-guess" type="text" name="username" placeholder="Answer here!">
-            <button type="submit" class="btn btn-default">Submit</button>
-          </div>
-          <div class="sentence">
-            <p> STRETCH this is a sentence </p>
-          </div>
-          <div class="hint">
-            <p> STRETCH this is a hint </p>
-          </div>
-          <div class="answer">
-            <p class="center" id="translated-word"> this is the answer </p>
-          </div>
-          <div class="message">
-            <p> STRETCH this is a message </p>
-          </div>
-        </div>
+<!DOCTYPE html>
 
 
-        <!-- right box -->
-        <div class="col-sm-offset-1 col-sm-3 right">
-          <div class="container statistics">
-            <div class="stats">
-              <p>Questions Answered: <span id="questions-answered"</span></p>
-            </div>
-            <div class="stats">
-              <p>Questions Correct: <span id="questions-correct"</span></p>
-            </div>
-            <div class="stats">
-              <p>Questions Incorrect: <span id="questions-incorrect"</span></p>
-            </div>
-            <div class="stats">
-              <p>Questions Remaining: <span id="questions-remaining"</span></p>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#page-top">Ling-Quiz-Tics</a>
             </div>
 
-          </div> <!-- end container -->
-        </div><!-- end col-sm-3 right -->
-
-      </div> <!-- end row -->
-
-
-
-
-    </div> <!-- end main -->
-  </div> <!-- end container fluid -->
-
-  <!-- start modal -->
-  <div class="modal" id="start-modal" tabindex="-1" role="dialog" aria-labelledby="screenStartLabel">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2 class="modal-title center" id="logo">Lin-quiz-tics</h2>
-        </div>
-        <div class="modal-body">
-          <div class="form" id="screen-start-window">
-            <form name="______" class="center">
-              <h3>Please enter your name</h3>
-              <input class="-input center" type="text" id="name-input" placeholder="Johnny Doing..." >
-              <h3>Now, choose a language</h3>
-              <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose your language
-                <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                  <li id="language-from"><a href="#">English to Spanish</a></li>
-                  <li id="language-to"><a href="#">Spanish to English</a></li>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#portfolio">Challenges</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#about">Practice</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#stats">Stats</a>
+                    </li>
                 </ul>
-              </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
 
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <img class="img-responsive" src="img/profile.png" alt="">
+                    <div class="intro-text">
+                        <span class="name">Ling-Quiz-Tics</span>
+                        <hr class="star-light">
+                        <span class="skills">Learn - Challenge - Grow</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-              <h3>So you wanna take our quiz or...</h3>
-              <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose type
-                <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                  <li id="quiz-toggle"><a href="#">Quiz me bitch!</a></li>
-                  <li id="practice-toggle"><a href="#"> I'm too scared, I wanna practice!</a></li>
-                </ul>
-              </div>
-              <br>
-              <br>
-              <button type="submit" id="start-screen-button" class="btn btn-default" data-dismiss="modal">submit</button>
-              </button>
-            </form> <!-- end age verification form -->
-          </div> <!-- end age verification window -->
-        </div> <!-- end modal content -->
-      </div> <!-- end modal dialog -->
-    </div> <!-- end age verification modal -->
-  </div>
+    <!-- Portfolio Grid Section -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Challenges</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 portfolio-item">
+                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="img/portfolio/cabin.png" class="img-responsive" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-4 portfolio-item">
+                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="img/portfolio/cake.png" class="img-responsive" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-4 portfolio-item">
+                    <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="img/portfolio/game.png" class="img-responsive" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Practice Section -->
+    <section class="success" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 id="practice-word">Practice</h2>
+                    <hr class="star-light">
+                    <h2 id="practice-translated-word"></h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <form name="question" id="questionForm" novalidate>
+                        <div class="row control-group">
+                            <div class=" white-background form-group col-xs-12 floating-label-form-group controls">
+                                <label>Answer</label>
+                                <input type="text" class="form-control" placeholder="Click Start To Practice" id="practice-answer">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <br>
+                        <div id="success"></div>
+                        <div class="row">
+                            <div class="form-group col-xs-6">
+                                <button name="practice" type="submit" id='practice' class="btn btn-lg">Start</button>
+                            </div>
+                            <div class="from-group col-xs-6">
+                              <select class="form-control" id="practice-difficulty">
+                                <option>Easy</option>
+                                <option>Medium</option>
+                                <option>Hard</option>
+                              </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="stats">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Stats</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-4">
+                        <ul class="list-inline">
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>Ling-Quiz-Tics</h3>
+                        <p>Learn something for Christ's sake!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Copyright &copy; gSchool group project!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll visible-xs visible-sm">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+
+    <!-- Portfolio Modals -->
+    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Sudden Death</h2>
+                            <hr class="star-primary">
+                            <img src="img/portfolio/cabin.png" class="img-responsive img-centered" alt="">
+                            <p>Think you can handle the pressure? One wrong word and it's game-over.</p>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Coming Soon: 20 Questions</h2>
+                            <hr class="star-primary">
+                            <img src="img/portfolio/cake.png" class="img-responsive img-centered" alt="">
+                            <p>20 questions to talk the talk. Get 5 wrong and you walk.</p>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Coming Soon: Rapid Fire</h2>
+                            <hr class="star-primary">
+                            <img src="img/portfolio/game.png" class="img-responsive img-centered" alt="">
+                            <p>You've got 10 minutes to prove you know the lingo gringo. What do you say?</p>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="start-modal" tabindex="-1" role="dialog" aria-labelledby="screenStartLabel">
+     <div class="modal-dialog">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h2 class="modal-title center" id="logo">Lin-quiz-tics</h2>
+         </div>
+         <div class="modal-body">
+           <div class="form" id="screen-start-window">
+             <form name="______" class="center">
+               <div class="row">
+                 <div class="col-md-12">
+                   <h3>Please enter your name</h3>
+                 </div>
+               </div>
+               <div class="row">
+                 <div class="col-md-6">
+                   <input class="-input center" type="text" id="name-input" placeholder="Johnny Doing..." >
+                 </div>
+                 <div class="col-md-6">
+                  <button type="submit" id="game-init-button" class="btn btn-default" data-dismiss="modal">submit</button>
+                  </button>
+                 </div>
+               </div>
+             </form> <!-- end age verification form -->
+           </div> <!-- end age verification window -->
+         </div> <!-- end modal content -->
+       </div> <!-- end modal dialog -->
+     </div> <!-- end entry modal -->
+
 
 {% endblock %}

@@ -1,7 +1,6 @@
 // constructor
-function Quiz(language, wordArray){
+function Quiz(language){
   this.languageChoice= language;
-  this.words = wordArray;
   this.questions = [];
   this.currentQuestion= 0;
   this.isFailed = false;
@@ -9,15 +8,13 @@ function Quiz(language, wordArray){
   this.results = new Results(0, 0, 0, 20);
 }
 
-Quiz.prototype.getWord = function(){
-  var index = Math.floor(Math.random * this.words.length);
-  return this.words.splice(index, 1);
-};
-
-Quiz.prototype.createQuestions = function () {
-  for (var i = 0; i < 20; i++) {
+Quiz.prototype.createQuestions = function (num) {
+  var words = game.getWord(this.difficulty, true);
+  for (var i = 0; i < num; i++) {
+    var index = Math.floor(Math.random() * words.length);
+    var word = words.splice(index, 1);
     this.questions.push(
-      new Question(this.getWord())
+      new Question(words)
     );
   }
 };
@@ -36,8 +33,6 @@ Quiz.prototype.updateResults= function(){
   }
     this.questionsIncorrect = this.questionsAnswered - this.questionsCorrect;
 };
-
-
 
 Quiz.prototype.nextQuestion= function(){
   this.updateResults();
