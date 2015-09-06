@@ -8,7 +8,7 @@ $(document).on('ready', function(){
 
 $('#game-init-button').on('click', function () {
   game = new Game();
-  // game.question = new Question(game.getWord('Easy'));
+  game.question = new Question(game.getWord('Easy'));
 
 })
 
