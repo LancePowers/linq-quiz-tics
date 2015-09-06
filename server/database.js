@@ -13,17 +13,17 @@ var User = new Schema(
           questionsAnswered: Number,
           questionsCorrect: Number,
           questionsIncorrect: Number,
-          questionsRemaining: Number,
+          questionsRemaining: Number
         },
         questions: [{
           userAnswer: String,
           word: String,
           translatedWord: String,
-          isCorrect: Boolean,
+          isCorrect: Boolean
         }],
       }],
     quizesPassed: Number,
-    quizesFailed: Number,
+    quizesFailed: Number
   }
 );
 
