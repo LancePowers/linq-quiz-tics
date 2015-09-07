@@ -3,13 +3,14 @@ function Quiz(language,type){
   this.languageChoice= language; // change to game.language
   this.questions = [];
   this.currentQuestion= 0;
-  this.results = new Results(0, 0, 0, 20);
+  this.results = new Results(0, 0, 0, 0);
   this.type = type;
 }
 
 // Populates the questions array. Pass in number based upon quiz type.
 Quiz.prototype.createQuestions = function (num) {
   var words = game.getWord(this.difficulty, true);
+  this.results.questionsRemaining = num;
   for (var i = 0; i < num; i++) {
     var index = Math.floor(Math.random() * words.length);
     var word = words.splice(index, 1);
@@ -28,25 +29,34 @@ Quiz.prototype.updateResults= function(){
       this.results.questionsRemaining --;
     }
     if (this.questions[i].isCorrect) {
-      this.questionsCorrect ++;
+      this.results.questionsCorrect ++;
     }
   }
-    this.questionsIncorrect = this.questionsAnswered - this.questionsCorrect;
+
 };
 
 //
 Quiz.prototype.nextQuestion= function(){
+  game.question.checkUserAnswer();
   this.updateResults();
   this.checkFailQuiz();
-  this.currentQuestion ++;
-  this.renderQuestion();
+  if(this.isDone){
+    alert('challenge complete')// replace with results render
+  } else {
+    game.question = this.questions[this.results.questionsAnswered];
+  }
 };
 
-// if they miss 5 questions,
+// check to see end conditions for sudden death and 20Q. rapid fire is on timeout
 Quiz.prototype.checkFailQuiz= function(){
-  if (this.results.questionsIncorrect >= 5) {
-    this.renderFail();
-    this.isFailed = true;
+  if(this.type === 'sudden-death'){
+    if(!game.question.isCorrect){
+      this.isDone = true;
+    }
+  } else if (this.type === 'twenty-questions'){
+    if (this.results.questionsIncorrect >= 5 || this.results.questionsAnswered === 20) {
+      this.isDone = true;
+    }
   }
 };
 
@@ -56,30 +66,12 @@ Quiz.prototype.checkPassQuiz = function () {
   }
 };
 
-// give them the choice to start quiz again or go to practice.
-Quiz.prototype.renderFail = function () {
-    $('#start-screen').show();
-    $('#message').html("Sorry, you f'ed up!");
-};
-
-Quiz.prototype.renderResults= function(){
-    $('#questions-answered').html(this.results.questionsAnswered);
-    $('#questions-correct').html(this.results.questionsCorrect);
-    $('#questions-incorrect').html(this.results.questionsIncorrect);
-    $('#questions-remaining').html(this.results.questionsRemaining);
-};
-
-Quiz.prototype.renderQuestion= function(){
-    $('#question-word').html(this.questions[this.currentQuestion].word);
-};
-
 // constructor for results
 function Results(qA, qC, qI, qR){
   this.questionsAnswered = qA;
   this.questionsCorrect = qC;
   this.questionsIncorrect = qI;
   this.questionsRemaining = qR;
-  this.score = null;
 }
 
 Quiz.prototype.createQuizElement = function(){
@@ -123,7 +115,6 @@ console.log(this.type);
     </div>'
   return element;
 }
-// it should stop the
 
 
 
