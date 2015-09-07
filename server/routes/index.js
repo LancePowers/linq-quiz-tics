@@ -1,16 +1,11 @@
 var express = require('express');
 var router = express.Router();
-<<<<<<< HEAD
+var crud = require("../logic/crud.js");
 
 var bt = require('bing-translate').init({
   client_id: 'Linquiztics',
   client_secret: process.env.KEY_1
 });
-// var Question = require("../utilities/question");
-=======
-var crud = require("../logic/crud.js");
->>>>>>> upstream/master
-
 
 router.get('/user', function(req, res, next) {
   // test = new Question();
