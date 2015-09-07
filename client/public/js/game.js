@@ -5,6 +5,8 @@ function Game(){
   this.user = null;
   this.quiz = null;
   this.question = null;
+  this.langFrom = null;  // PJ
+  this.langTo = null; // PJ
 }
 
 Game.prototype.getWord = function(difficulty,array){
@@ -20,7 +22,9 @@ Game.prototype.getWord = function(difficulty,array){
   return words.splice(index, 1);
 };
 Game.prototype.init = function () {
-  var name = $('#name-input').val;
+  var name = $('#name-input').val();
+  var langFrom = $('#lang-from').val();
+  var LangTo = $('#lang-to').val();
   this.user = new User(name);
 };
 
