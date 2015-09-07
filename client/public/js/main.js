@@ -17,16 +17,13 @@ $('#game-init-button').on('click', function () {
 $('#practice').on('click', function(event){
   event.preventDefault();
   var difficulty = $('#'+this.id+'-difficulty option:selected').html();
-  if($(this).html()==='Start'){
-    game.question = new Question(game.getWord(difficulty));
-  }else if($(this).html()==='Answer'){
+  if($(this).html()==='Start' || $(this).html()==='Next'){
     $(this).html('Answer');
-    $(this).html('Submit');
-    game.question.answer(event);
-  } else {
-    game.question = new Question(game.getWord(difficulty));
-    $(this).html('Answer');
+    game.question = new Question(game.getWord(difficulty)[0]);
     game.question.show(event);
+  }else if($(this).html()==='Answer'){
+    $(this).html('Next');
+    game.question.answer(event);
   }
 })
 
@@ -47,7 +44,7 @@ $('#sudden-death').on('click', function(event){
     game.question.answer(event);
     //next question
   } else {
-    game.question = new Question(game.getWord(difficulty));
+    game.question = new Question(game.getWord(difficulty)[0]);
     $(this).html('Answer');
     game.question.show(event);
     // show quiz score

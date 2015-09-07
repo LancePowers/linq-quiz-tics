@@ -60,7 +60,7 @@ Question.prototype.checkUserAnswer = function(){
 Question.prototype.isAcceptable = function(){
   var count = 0;
   for (var i = 0; i < this.userAnswer.length; i++) {
-    if (this.translatedWord.word[i] !== this.userAnswer[i]){
+    if (this.translatedWord[i] !== this.userAnswer[i]){
       count++;
     }
   }
