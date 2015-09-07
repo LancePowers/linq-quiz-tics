@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-// var Question = require("../utilities/question");
+var crud = require("../logic/crud.js");
 
 
 router.get('/user', function(req, res, next) {
@@ -14,7 +14,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/user', function(req, res, next) {
-  res.render('index', { title: 'Node-Translate' });
+  var response = crud.handlePost(req.body.name);
+  res.json(response);
 });
 
 router.put('/user', function(req, res, next) {
