@@ -37,7 +37,6 @@ Quiz.prototype.updateResults= function(){
 
 //
 Quiz.prototype.nextQuestion= function(){
-  game.question.checkUserAnswer();
   this.updateResults();
   this.checkFailQuiz();
   if(this.isDone){
@@ -75,14 +74,14 @@ function Results(qA, qC, qI, qR){
 }
 
 Quiz.prototype.createQuizElement = function(){
-console.log(this.type);
+ debugger;
   var element =
     '<div class="container success"> \
         <div class="row"> \
             <div class="col-lg-6 text-center"> \
-                <h2 id="'+this.type+'-word">Practice</h2> \
+                <h2 id="'+game.quiz.type+'-word">Challenge</h2> \
                 <hr class="star-light"> \
-                <h2 id="'+this.type+'-translated-word"></h2> \
+                <h2 id="'+game.quiz.type+'-translated-word"></h2> \
             </div> \
         </div> \
         <div class="row"> \
@@ -91,7 +90,7 @@ console.log(this.type);
                     <div class="row control-group"> \
                         <div class=" white-background form-group col-xs-12 floating-label-form-group controls"> \
                             <label>Answer</label> \
-                            <input type="text" class="form-control" placeholder="Click Start To Practice" id="'+this.type+'-answer"> \
+                            <input type="text" class="form-control" placeholder="Click Start To Challenge" id="'+game.quiz.type+'-answer"> \
                             <p class="help-block text-danger"></p> \
                         </div> \
                     </div> \
@@ -99,10 +98,10 @@ console.log(this.type);
                     <div id="success"></div> \
                     <div class="row"> \
                         <div class="form-group col-xs-6"> \
-                            <button name="'+this.type+'" type="submit" id="'+this.type+'" class="btn btn-lg">Start</button> \
+                            <button id="'+game.quiz.type+'"class="btn btn-lg">Start</button> \
                         </div> \
                         <div class="from-group col-xs-6"> \
-                          <select class="form-control" id="'+this.type+'-difficulty"> \
+                          <select class="form-control" id="'+game.quiz.type+'-difficulty"> \
                             <option>Easy</option> \
                             <option>Medium</option> \
                             <option>Hard</option> \
@@ -112,7 +111,7 @@ console.log(this.type);
                 </form> \
             </div> \
         </div> \
-    </div>'
+    </div>';
   return element;
 }
 
