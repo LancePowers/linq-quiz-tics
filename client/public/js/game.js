@@ -25,6 +25,8 @@ Game.prototype.init = function () {
   var name = $('#name-input').val();
   var langFrom = $('#lang-from').val();
   var LangTo = $('#lang-to').val();
+  this.langFrom = langFrom;
+  this.langTo = langTo;
   this.user = new User(name);
 };
 
