@@ -1,14 +1,14 @@
 // var key1 = require('../../keys');
 // var bt = require('bing-translate').init({
 //   client_id: 'Linquiztics',
-//   client_secret: key1
+//   client_secret: '7Slijcl/h2H7lza6UOJajEsHPec4WAdaT0awjLcu1/w='
 // });
 
 // constructor
 function Question(word){
   this.userAnswer = null;
   this.word = word;
-  this.translatedWord = 'hola'; // substitute with ajax call
+  this.translatedWord = $.get('/translate', function(req, res,){console.log(res)})
   this.isCorrect = null;
 }
 
@@ -38,7 +38,8 @@ Question.prototype.answer = function (event) {
 Question.prototype.getTranslation = function(word, langFrom,langTo ){
   bt.translate(word,langFrom,langTo, function(err, res){
     console.log(err, res);
-    return res;
+    this.translatedWord = res;
+    console.log(this.translatedWord);
   });
 };
 
@@ -70,4 +71,4 @@ Question.prototype.isAcceptable = function(){
   else return true;
 };
 
-module.exports = Question;
+// module.exports = Question;

@@ -80,4 +80,4 @@ function Results(qA, qC, qI, qR){
   this.questionsRemaining = qR;
 }
 
-module.exports = Quiz;
+// module.exports = Quiz;
