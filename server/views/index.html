@@ -105,7 +105,7 @@
     </section>
 
     <!-- Practice Section -->
-    <section class="success" id="about">
+    <section class="success">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -218,11 +218,13 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
+                          <div id = "content">
                             <h2>Sudden Death</h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/cabin.png" class="img-responsive img-centered" alt="">
                             <p>Think you can handle the pressure? One wrong word and it's game-over.</p>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                            <button id='start-sudden-death' type="button" class="btn btn-default" ><i class="fa fa-times"></i> Start</button>
+                          </div>
                         </div>
                     </div>
                 </div>
@@ -275,6 +277,8 @@
             </div>
         </div>
     </div>
+
+    <!-- start modal -->
     <div class="modal" id="start-modal" tabindex="-1" role="dialog" aria-labelledby="screenStartLabel">
      <div class="modal-dialog">
        <div class="modal-content">
@@ -293,10 +297,36 @@
                  <div class="col-md-6">
                    <input class="-input center" type="text" id="name-input" placeholder="Johnny Doing..." >
                  </div>
-                 <div class="col-md-6">
-                  <button type="submit" id="game-init-button" class="btn btn-default" data-dismiss="modal">submit</button>
-                  </button>
+                 <br>
+                 <br>
+                 <div class="col-md-12">
+                   <h4>Please choose a root language</h3>
                  </div>
+               </div>
+               <div class="row">
+                 <div class="col-md-6">
+                  <select class="form-control" id="lang-from">
+                    <option>English</option>
+                    <option>Spanish</option>
+                  </select>
+                 </div>
+                 <div class="col-md-12">
+                   <h4>Please choose a translation language</h3>
+                 </div>
+               </div>
+               <div class="row">
+                 <div class="col-md-6">
+                  <select class="form-control" id="lang-to">
+                    <option>English</option>
+                    <option>Spanish</option>
+                  </select>
+                 </div>
+               </div>
+               <br>
+               <div class="row">
+                <div class="col-md-12">
+                  <button type="submit" id="game-init-button" class="btn btn-default" data-dismiss="modal">submit</button>
+                </div>
                </div>
              </form> <!-- end age verification form -->
            </div> <!-- end age verification window -->

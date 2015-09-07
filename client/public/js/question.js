@@ -1,14 +1,14 @@
 // var key1 = require('../../keys');
 // var bt = require('bing-translate').init({
 //   client_id: 'Linquiztics',
-//   client_secret: '7Slijcl/h2H7lza6UOJajEsHPec4WAdaT0awjLcu1/w='
+//   client_secret: ''
 // });
 
 // constructor
 function Question(word){
   this.userAnswer = null;
   this.word = word;
-  this.translatedWord = $.get('/translate', function(req, res,){console.log(res)})
+  this.translatedWord = $.get('/translate', function(req, res,){console.log(res)});
   this.isCorrect = null;
 }
 

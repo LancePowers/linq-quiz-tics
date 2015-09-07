@@ -5,6 +5,8 @@ function Game(){
   this.user = null;
   this.quiz = null;
   this.question = null;
+  this.langFrom = null;  // PJ
+  this.langTo = null; // PJ
 }
 
 Game.prototype.getWord = function(difficulty,array){
@@ -21,7 +23,11 @@ Game.prototype.getWord = function(difficulty,array){
   return words.splice(index, 1);
 };
 Game.prototype.init = function () {
-  var name = $('#name-input').val;
+  var name = $('#name-input').val();
+  var langFrom = $('#lang-from').val();
+  var LangTo = $('#lang-to').val();
+  this.langFrom = langFrom;
+  this.langTo = langTo;
   this.user = new User(name);
 };
 
@@ -40,35 +46,3 @@ Game.prototype.renderFail = function () {
     $('#start-screen').show();
     $('#message').html("Sorry, you f'ed up!");
 };
-
-//// event handlers ////
-
-$('#login').on('click',function(){
-  game = new Game();
-  game.init();
-});
-
-$('#start-quiz').on('click',function(){
-  //if
-});
-
-$('#submit-answer').on('click',function(){
-
-});
-
-$('#next-question').on('click',function(){
-
-});
-
-$('#restart-quiz').on('click',function(){
-
-});
-
-$('#change-user').on('click',function(){
-
-});
-
-
-// Need to add user stats rendering.
-// we have practice
-// add quiz language wordArray

@@ -28,3 +28,7 @@ start button states
   1. display pass/fail where word was function()
   1. change color to red if fail
   1. display translated word
+
+design separately
+check dependencies
+join

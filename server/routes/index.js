@@ -1,5 +1,10 @@
 var express = require('express');
 var router = express.Router();
+
+var bt = require('bing-translate').init({
+  client_id: 'Linquiztics',
+  client_secret: process.env.KEY_1
+});
 // var Question = require("../utilities/question");
 
 
