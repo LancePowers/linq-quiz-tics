@@ -14,17 +14,13 @@ function Question(word){
 
 
 // Show's the word and any quiz specifics
-Question.prototype.show = function(event) {
-  var button = event.toElement;
-  var challenge = $(button).attr('id');
+Question.prototype.show = function(challenge) {
   $('#'+challenge+'-word').html(this.word).css('color','#fff');
   $('#'+challenge+'-translated-word').html('Extra').css('color','#18bc9c');
 };
 
 // Show's the answer and whether or not it was correct
-Question.prototype.answer = function (event) {
-  var button = event.toElement;
-  var challenge = $(button).attr('id');
+Question.prototype.answer = function (challenge) {
   this.userAnswer = $('#'+challenge+'-answer').val();
   this.checkUserAnswer();
   if(!this.isCorrect){
