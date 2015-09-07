@@ -39,35 +39,3 @@ Game.prototype.renderFail = function () {
     $('#start-screen').show();
     $('#message').html("Sorry, you f'ed up!");
 };
-
-//// event handlers ////
-
-$('#login').on('click',function(){
-  game = new Game();
-  game.init();
-})
-
-$('#start-quiz').on('click',function(){
-  //if
-})
-
-$('#submit-answer').on('click',function(){
-
-})
-
-$('#next-question').on('click',function(){
-
-})
-
-$('#restart-quiz').on('click',function(){
-
-})
-
-$('#change-user').on('click',function(){
-
-})
-
-
-// Need to add user stats rendering.
-// we have practice
-// add quiz language wordArray
