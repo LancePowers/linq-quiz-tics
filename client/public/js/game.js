@@ -30,6 +30,21 @@ Game.prototype.init = function () {
   this.user = new User(name);
 };
 
+Game.prototype.setUser = function(){
+  var nameInput = $('#name-input').val();
+  var nameSelect = $('#name-select').prop("selected");
+  if ($('#name-input').val().length > 0) {
+    this.user = nameInput;
+  }
+  else if($('#name-select').prop("selected") !== "Select Name"){
+    this.user = nameSelect;
+  }
+  else {
+    alert("Please select a user or create a new account.");
+    //refire modal or deny submit
+  }
+}
+
 Game.prototype.renderQuestion = function (word) {
   $('#question-word').html(word);
 };
