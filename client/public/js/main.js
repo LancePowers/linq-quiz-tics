@@ -1,12 +1,11 @@
 $(document).on('ready', function(){
- //  $('#start-modal').modal({
- //   backdrop:'static',
- //   keyboard:false,
- //   show:true
- // });
+  $('#start-modal').modal({
+   backdrop:'static',
+   keyboard:false,
+   show:true
+ });
 })
-game = new Game();
-game.question = new Question(game.getWord('Easy'));
+
 // Button on login modal to setup session
 $('#game-init-button').on('click', function () {
   game = new Game();
