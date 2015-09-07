@@ -6,25 +6,54 @@ $(document).on('ready', function(){
  });
 })
 
+// Button on login modal to setup session
 $('#game-init-button').on('click', function () {
   game = new Game();
   game.question = new Question(game.getWord('Easy'));
 
 })
 
+// Practice button
 $('#practice').on('click', function(event){
   event.preventDefault();
-  console.log(game.question.word)
-  // question
-  if($(this).html()==='Answer'){
+  var difficulty = $('#'+this.id+'-difficulty option:selected').html();
+  if($(this).html()==='Start'){
+    game.question = new Question(game.getWord(difficulty));
+  }else if($(this).html()==='Answer'){
+    $(this).html('Answer');
     $(this).html('Submit');
     game.question.answer(event);
   } else {
-    //answer
-    var difficulty = $('#'+this.id+'-difficulty option:selected').html();
-    console.log(difficulty);
     game.question = new Question(game.getWord(difficulty));
     $(this).html('Answer');
     game.question.show(event);
   }
 })
+
+
+$('#start-sudden-death').on('click', function(){
+  game.quiz = new Quiz('english','sudden-death');
+  $('#content').html(game.quiz.createQuizElement);
+})
+// Sudden Death Button
+$('#sudden-death').on('click', function(event){
+  event.preventDefault();
+  var difficulty = $('#'+this.id+'-difficulty option:selected').html();
+  if($(this).html()==='Start'){
+    //create quiz object
+    //add questions to it
+  }else if($(this).html()==='Answer'){
+    $(this).html('Submit');
+    game.question.answer(event);
+    //next question
+  } else {
+    game.question = new Question(game.getWord(difficulty));
+    $(this).html('Answer');
+    game.question.show(event);
+    // show quiz score
+  }
+})
+
+// Twenty Questions Button
+
+// Rapid Fire Button
