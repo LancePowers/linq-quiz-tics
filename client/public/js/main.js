@@ -10,7 +10,6 @@ $(document).on('ready', function(){
 $('#game-init-button').on('click', function () {
   game = new Game();
   game.question = new Question(game.getWord('Easy'));
-
 })
 
 // Practice button
@@ -20,34 +19,33 @@ $('#practice').on('click', function(event){
   if($(this).html()==='Start' || $(this).html()==='Next'){
     $(this).html('Answer');
     game.question = new Question(game.getWord(difficulty)[0]);
-    game.question.show(event);
+    game.question.show(this.id);
   }else if($(this).html()==='Answer'){
     $(this).html('Next');
-    game.question.answer(event);
+    game.question.answer(this.id);
   }
 })
 
 
 $('#start-sudden-death').on('click', function(){
   game.quiz = new Quiz('english','sudden-death');
-  $('#content').html(game.quiz.createQuizElement);
+  $('#content').html(game.quiz.createQuizElement);//()?
+  game.quiz.createQuestions(100);
+  game.question = game.quiz.questions[0];
+  game.question.show('sudden-death');
 })
 // Sudden Death Button
-$('#sudden-death').on('click', function(event){
+$(document).on('submit', '#sudden-death', function(event){
   event.preventDefault();
+  var button = '#'+this.id+' :button';
   var difficulty = $('#'+this.id+'-difficulty option:selected').html();
-  if($(this).html()==='Start'){
-    //create quiz object
-    //add questions to it
-  }else if($(this).html()==='Answer'){
-    $(this).html('Submit');
-    game.question.answer(event);
-    //next question
-  } else {
-    game.question = new Question(game.getWord(difficulty)[0]);
-    $(this).html('Answer');
-    game.question.show(event);
-    // show quiz score
+  if($(button).html()==='Next'){
+    $(button).html('Answer');
+    game.quiz.nextQuestion();
+    game.question.show(this.id);
+  }else if($(button).html()==='Answer'){
+    $(button).html('Next');
+    game.question.answer(this.id);
   }
 })
 

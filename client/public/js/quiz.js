@@ -15,7 +15,7 @@ Quiz.prototype.createQuestions = function (num) {
     var index = Math.floor(Math.random() * words.length);
     var word = words.splice(index, 1);
     this.questions.push(
-      new Question(words)
+      new Question(word)
     );
   }
 };
@@ -37,11 +37,11 @@ Quiz.prototype.updateResults= function(){
 
 //
 Quiz.prototype.nextQuestion= function(){
-  game.question.checkUserAnswer();
   this.updateResults();
   this.checkFailQuiz();
   if(this.isDone){
-    alert('challenge complete'); // replace with results render
+    alert('challenge complete');// replace with results render
+    //save quiz results
   } else {
     game.question = this.questions[this.results.questionsAnswered];
   }
@@ -60,12 +60,6 @@ Quiz.prototype.checkFailQuiz= function(){
   }
 };
 
-Quiz.prototype.checkPassQuiz = function () {
-  if (this.results.questionsCorrect > 15 && this.results.questionsRemaining === 0){
-    this.isPassed = true;
-  }
-};
-
 // constructor for results
 function Results(qA, qC, qI, qR){
   this.questionsAnswered = qA;
@@ -75,23 +69,22 @@ function Results(qA, qC, qI, qR){
 }
 
 Quiz.prototype.createQuizElement = function(){
-console.log(this.type);
   var element =
-    '<div class="container success"> \
+    '<div class="container success" style = "background-color: #18bc9c"> \
         <div class="row"> \
             <div class="col-lg-6 text-center"> \
-                <h2 id="'+this.type+'-word">Practice</h2> \
+                <h2 id="'+game.quiz.type+'-word">Challenge</h2> \
                 <hr class="star-light"> \
-                <h2 id="'+this.type+'-translated-word"></h2> \
+                <h2 id="'+game.quiz.type+'-translated-word"></h2> \
             </div> \
         </div> \
         <div class="row"> \
             <div class="col-lg-6"> \
-                <form name="question" id="questionForm" novalidate> \
+                <form name="question" id="'+game.quiz.type+'" novalidate> \
                     <div class="row control-group"> \
                         <div class=" white-background form-group col-xs-12 floating-label-form-group controls"> \
                             <label>Answer</label> \
-                            <input type="text" class="form-control" placeholder="Click Start To Practice" id="'+this.type+'-answer"> \
+                            <input type="text" class="form-control" placeholder="Click Start To Challenge" id="'+game.quiz.type+'-answer"> \
                             <p class="help-block text-danger"></p> \
                         </div> \
                     </div> \
@@ -99,10 +92,10 @@ console.log(this.type);
                     <div id="success"></div> \
                     <div class="row"> \
                         <div class="form-group col-xs-6"> \
-                            <button name="'+this.type+'" type="submit" id="'+this.type+'" class="btn btn-lg">Start</button> \
+                            <button class="btn btn-lg">Answer</button> \
                         </div> \
                         <div class="from-group col-xs-6"> \
-                          <select class="form-control" id="'+this.type+'-difficulty"> \
+                          <select class="form-control" id="'+game.quiz.type+'-difficulty"> \
                             <option>Easy</option> \
                             <option>Medium</option> \
                             <option>Hard</option> \
@@ -112,6 +105,6 @@ console.log(this.type);
                 </form> \
             </div> \
         </div> \
-    </div>'
+    </div>';
   return element;
 };

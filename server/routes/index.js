@@ -1,11 +1,15 @@
 var express = require('express');
 var router = express.Router();
+<<<<<<< HEAD
 
 var bt = require('bing-translate').init({
   client_id: 'Linquiztics',
   client_secret: process.env.KEY_1
 });
 // var Question = require("../utilities/question");
+=======
+var crud = require("../logic/crud.js");
+>>>>>>> upstream/master
 
 
 router.get('/user', function(req, res, next) {
@@ -19,7 +23,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/user', function(req, res, next) {
-  res.render('index', { title: 'Node-Translate' });
+  var response = crud.handlePost(req.body.name);
+  res.json(response);
 });
 
 router.put('/user', function(req, res, next) {

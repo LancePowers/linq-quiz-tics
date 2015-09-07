@@ -1,8 +1,4 @@
 // var key1 = require('../../keys');
-// var bt = require('bing-translate').init({
-//   client_id: 'Linquiztics',
-//   client_secret: ''
-// });
 
 // constructor
 function Question(word){

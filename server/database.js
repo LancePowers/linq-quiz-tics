@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema   = mongoose.Schema;
 
-var User = new Schema(
+var userSchema = new Schema(
   {
     name: String,
     quizes: [{
@@ -27,6 +27,10 @@ var User = new Schema(
   }
 );
 
-mongoose.model('users', User);
+var User = mongoose.model('users', userSchema);
 
-mongoose.connect('mongodb://localhost/node-user');
+mongoose.connect('mongodb://localhost/node-lingo');
+
+module.exports = {
+  User: User
+}
