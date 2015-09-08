@@ -31,7 +31,6 @@ User.prototype.getStats = function () {
       this.quizzes[i].score > stats.tqHigh.score
     ){
       stats.tqHigh = this.quizzes[i];
->>>>>>> upstream/master
     }
   }
   return stats;

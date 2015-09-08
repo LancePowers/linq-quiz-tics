@@ -50,7 +50,6 @@ $(document).on('submit', '.challenge', function(event){
   event.preventDefault();
   var button = '#'+this.id+' :button';
   var difficulty = $('#'+this.id+'-difficulty option:selected').html();
-  console.log(difficulty)
   if($(button).html()==='Choose'){
     $(button).html('Answer');
     game.quiz.difficulty = difficulty;

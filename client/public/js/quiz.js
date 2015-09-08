@@ -31,15 +31,16 @@ Quiz.prototype.createQuestions = function (num) {
 
 // update results as quiz progresses
 Quiz.prototype.updateResults= function(){
-  for (var i = 0; i < this.questions.length; i++) {
+  for (var i = this.results.questionsAnswered; i < this.questions.length; i++) {
     if (this.questions[i].userAnswer !== null ) {
       this.results.questionsAnswered ++;
+      console.log(this.results.questionsAnswered)
       this.results.questionsRemaining --;
-    }
-    if (this.questions[i].isCorrect) {
-      this.results.questionsCorrect ++;
-    } else {
-      this.results.questionsIncorrect ++;
+      if (this.questions[i].isCorrect) {
+        this.results.questionsCorrect ++;
+      } else {
+        this.results.questionsIncorrect ++;
+      }
     }
   }
 
@@ -64,14 +65,14 @@ Quiz.prototype.checkFailQuiz= function(){
   if(this.type === 'sudden-death'){
     if(!game.question.isCorrect){
       this.isDone = true;
-      this.score = this.questionsAnswered;
-      // save to database
+      this.score = this.results.questionsCorrect;
+      $('#sudden-death-content').html(this.getResultsElement());
     }
   } else if (this.type === 'twenty-questions'){
     if (this.results.questionsIncorrect >= 5 || this.results.questionsAnswered === 20) {
       this.isDone = true;
       this.score = this.results.questionsCorrect;
-      // save to database
+      $('#twenty-questions-content').html(this.getResultsElement());
     }
   }
 };
