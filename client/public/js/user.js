@@ -1,34 +1,39 @@
 // constructor
 function User(name){
   this.name = name;
-  this.quizesPassed = 0;
-  this.quizesFailed = 0;
-  this.quizes = [];
+  this.quizzesPassed = 0;
+  this.quizzesFailed = 0;
+  this.quizzes = [];
 }
 
 User.prototype.getStats = function () {
   var stats = {
-    passed: this.quizesPassed,
+    passed: this.quizzesPassed,
     sdHigh: null,
     qfHigh: null,
     tqHigh: null,
   }
-  for (var i = 0; i < this.quizes.length; i++) {
-    this.quizes[i]
+  for (var i = 0; i < this.quizzes.length; i++) {
+    if(
+      this.quizzes[i].type === "sudden-death" &&
+      this.quizzes[i].score > stats.sdHigh
+    ){
+      //get quiz 
+    }
     //if its this challenge & its higher than the current
   }
 };
 
 User.prototype.addQuiz = function(quiz){
-  this.quizes.push(quiz);
+  this.quizzes.push(quiz);
 };
 
 User.prototype.updatePassFail = function () {
-  for (var i = 0; i < this.quizes.length; i++) {
-    if(this.quizes[i].isFailed){
-      this.quizesFailed ++;
-    } else if(this.quizes[i].isPassed){
-      this.quizesPassed ++;
+  for (var i = 0; i < this.quizzes.length; i++) {
+    if(this.quizzes[i].isFailed){
+      this.quizzesFailed ++;
+    } else if(this.quizzes[i].isPassed){
+      this.quizzesPassed ++;
     }
   }
 };
