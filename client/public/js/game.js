@@ -21,23 +21,57 @@ Game.prototype.getWord = function(difficulty,array){
   var index = Math.floor(Math.random() * words.length);
   return words.splice(index, 1);
 };
+
 Game.prototype.init = function () {
-  var name = $('#name-input').val();
   var langFrom = $('#lang-from').val();
-  var LangTo = $('#lang-to').val();
+  var langTo = $('#lang-to').val();
   this.langFrom = langFrom;
   this.langTo = langTo;
-  this.user = new User(name);
+};
+
+Game.prototype.checkForUsers = function(){
+  $.ajax({
+    method: "GET",
+    url: "/user"
+  }).done(function(data){
+    var $select = $($("#name-select")[0]);
+    for (var i = 0; i < data.length; i++) {
+      $select.append("<select>"+data[i].name+"</select>");
+    };
+  }).fail(function(err){
+    console.log(err);
+  });
 };
 
 Game.prototype.setUser = function(){
   var nameInput = $('#name-input').val();
-  var nameSelect = $('#name-select').prop("selected");
+  var nameSelect = $('#name-select').find("option:selected");
+  console.log($(nameSelect).attr('id'));
+  var self = this;
   if ($('#name-input').val().length > 0) {
-    this.user = nameInput;
+    $.ajax ({
+      method: "POST",
+      url: '/user',
+      data: {
+        name: nameInput
+      }
+    }).done ( function (data) {
+      return data;
+    }).fail ( function (err) {
+      console.log(err);
+    });
+    this.user = new User(nameInput);
   }
-  else if($('#name-select').prop("selected") !== "Select Name"){
-    this.user = nameSelect;
+  else if(nameSelect.html() !== "Select Name"){
+    var id = $(nameSelect).attr('id');
+    $.ajax({
+      method: "GET",
+      url: '/user/' + id
+    }).done( function (data) {
+      self.user = data[0];
+    }).fail ( function (err) {
+      console.log(err);
+    });
   }
   else {
     alert("Please select a user or create a new account.");
