@@ -34,7 +34,10 @@ router.get('/wordlibrary', function(req, res, next) {
 router.post('/wordlibrary', function(req, res, next) {
   res.render('index', { title: 'Node-Translate' });
 });
-
+router.get("/translate", function(req, res, next){
+  var response = bt.translate(req.body.word, req.body.langFrom, req.body.langTo);
+  res.json(response);
+});
 
 
 
