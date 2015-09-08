@@ -18,7 +18,7 @@ User.prototype.getStats = function () {
       this.quizzes[i].type === "sudden-death" &&
       this.quizzes[i].score > stats.sdHigh.score
     ){
-      stats.sdHigh = this;
+      stats.sdHigh = this.quizzes[i];
     }
     if(
       this.quizzes[i].type === "quick-fire" &&

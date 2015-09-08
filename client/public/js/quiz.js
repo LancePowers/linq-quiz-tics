@@ -6,7 +6,15 @@ function Quiz(type, difficulty){
   this.type = type;
   this.difficulty = null;
   this.score = 0;
+  this.isDone = false;
 }
+
+/////////////// TO DO /////////////////
+// link up to stats (use a #link to open the modal and then call the results function)
+// reset the modals
+// create challenge specific message
+// test timeout function
+
 
 // Populates the questions array. Pass in number based upon quiz type.
 Quiz.prototype.createQuestions = function (num) {
@@ -23,7 +31,6 @@ Quiz.prototype.createQuestions = function (num) {
 
 // update results as quiz progresses
 Quiz.prototype.updateResults= function(){
-  // this takes care of questions answered and questions remaining
   for (var i = 0; i < this.questions.length; i++) {
     if (this.questions[i].userAnswer !== null ) {
       this.results.questionsAnswered ++;
@@ -39,14 +46,15 @@ Quiz.prototype.updateResults= function(){
 };
 
 Quiz.prototype.startTimer = function () {
-  // body...
+  this.isDone = true;
+  this.score = this.results.questionsCorrect;
 };
 
 //
 Quiz.prototype.nextQuestion= function(){
   this.updateResults();
   this.checkFailQuiz();
-  if(this.isDone){
+  if(!this.isDone){
     game.question = this.questions[this.results.questionsAnswered];
   }
 };
