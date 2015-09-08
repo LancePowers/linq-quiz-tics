@@ -16,9 +16,21 @@ User.prototype.getStats = function () {
   for (var i = 0; i < this.quizzes.length; i++) {
     if(
       this.quizzes[i].type === "sudden-death" &&
-      this.quizzes[i].score > stats.sdHigh
+      this.quizzes[i].score > stats.sdHigh.score
     ){
-      //get quiz 
+      stats.sdHigh = this;
+    }
+    if(
+      this.quizzes[i].type === "quick-fire" &&
+      this.quizzes[i].score > stats.sdHigh.score
+    ){
+      stats.sdHigh = this;
+    }
+    if(
+      this.quizzes[i].type === "twenty-questions" &&
+      this.quizzes[i].score > stats.sdHigh.score
+    ){
+      stats.sdHigh = this;
     }
     //if its this challenge & its higher than the current
   }
