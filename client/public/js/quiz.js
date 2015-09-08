@@ -116,11 +116,66 @@ Quiz.prototype.createQuizElement = function(){
       </div>';
   return element;
 }
+Quiz.prototype.getResultsElement = function() {
+  var element =
+  '<div class="container">\
+    <div class="row">\
+        <div class="col-md-12">\
+            <div class="alert alert-info">\
+                 Your score is ' + this.score +'</div>\
+            <div class="alert alert-success" style="display:none;">\
+                <span class="glyphicon glyphicon-ok"></span> Drag table row and cange Order</div>\
+            <table class="table">\
+                <thead>\
+                    <tr>\
+                        <th>\
+                            Word\
+                        </th>\
+                        <th>\
+                            Translated Word\
+                        </th>\
+                        <th>\
+                            Your Answer\
+                        </th>\
+                    </tr>\
+                </thead>\
+                <tbody>'
+                  + this.resultsTable() +
+                '</tbody>\
+            </table>\
+        </div>\
+    </div>\
+</div>';
+return element;
+};
 
-
-
-
-
+Quiz.prototype.resultsTable  =  function() {
+  var resultsTable = "";
+  for (i = 0; i < this.questions.length; i++) {
+    var questionStatus = "";
+    if (this.questions[i].isCorrect) {
+      questionStatus = 'success';
+    } else if (this.questions[i].userAnswer === null) {
+      questionStatus = 'active';
+    } else {
+      questionStatus = 'danger';
+    };
+    var element =
+    '<tr class="'+ questionStatus +'">\
+      <td>'
+          + this.questions[i].word +
+      '</td>\
+      <td>'
+          + this.questions[i].translatedWord +
+      '</td>\
+      <td>'
+          + this.questions[i].userAnswer +
+      '</td>\
+    </tr>';
+    resultsTable += element;
+  };
+  return resultsTable;
+};
 
 
 module.exports = Quiz;
