@@ -62,6 +62,7 @@ Quiz.prototype.nextQuestion= function(){
     game.user.quizzes.push(this);
     $('#'+this.type+'-content').html(this.getResultsElement());
     this.score = this.results.questionsCorrect;
+    game.updateUserQuizzes();
     game.quiz = null;
   }
 };

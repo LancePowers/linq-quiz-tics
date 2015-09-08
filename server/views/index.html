@@ -306,7 +306,7 @@
     <!-- Portfolio Modals -->
     <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
+            <div class="close-modal reset-challenge" data-dismiss="modal">
                 <div class="lr">
                     <div class="rl">
                     </div>
@@ -331,7 +331,7 @@
     </div>
     <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
+            <div class="close-modal reset-challenge" data-dismiss="modal">
                 <div class="lr">
                     <div class="rl">
                     </div>
@@ -354,7 +354,7 @@
     </div>
     <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
+            <div class="close-modal reset-challenge" data-dismiss="modal">
                 <div class="lr">
                     <div class="rl">
                     </div>
@@ -364,11 +364,11 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Coming Soon: Rapid Fire</h2>
+                            <h2>Rapid Fire</h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/game.png" class="img-responsive img-centered" alt="">
                             <p>You've got 10 minutes to prove you know the lingo gringo. What do you say?</p>
-                            <button id='start-rapid-fire' type="button" class="btn btn-default challenge-btn"><i class="fa fa-times"></i> Close</button>
+                            <button id='start-rapid-fire' type="button" class="btn btn-default challenge-btn">Start</button>
                         </div>
                     </div>
                 </div>
@@ -392,11 +392,13 @@
                  </div>
                </div>
                <div class="row">
-                 <div class="col-md-6">
-                   <input class="-input center" type="text" id="name-input" placeholder="Johnny Doing..." >
-                   - OR -
+                 <div class="col-md-5">
+                   <input class="form-control input center" type="text" id="name-input" placeholder="Johnny Doing..." >
                  </div>
-                 <div class="col-md-6">
+                   <div class="col-md-2 bigger">
+                   <span id="bigger">- OR -</span>
+                   </div>
+                 <div class="col-md-5">
                   <select class="form-control" id="name-select">
                     <option>Select Name</option>
                   </select>
