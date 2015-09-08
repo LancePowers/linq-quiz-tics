@@ -17,11 +17,14 @@ function Question(word){
 Question.prototype.show = function(challenge) {
   $('#'+challenge+'-word').html(this.word).css('color','#fff');
   $('#'+challenge+'-translated-word').html('Extra').css('color','#18bc9c');
+  $('#'+challenge+'-answer').attr('placeholder','Enter Answer');
 };
 
 // Show's the answer and whether or not it was correct
 Question.prototype.answer = function (challenge) {
   this.userAnswer = $('#'+challenge+'-answer').val();
+  $('#'+challenge+'-answer').val('');
+  $('#'+challenge+'-answer').attr('placeholder','Click Next');
   this.checkUserAnswer();
   if(!this.isCorrect){
     $('#'+challenge+'-word').html('Fail').css('color','#bd3e25');
