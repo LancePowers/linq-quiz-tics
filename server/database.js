@@ -4,7 +4,9 @@ var Schema   = mongoose.Schema;
 var userSchema = new Schema(
   {
     name: String,
-    quizes: [{
+    quizzes: [{
+        score: Number,
+        type: String,
         languageChoice: String,
         currentQuestion: Number,
         isFailed: Boolean,
@@ -22,8 +24,8 @@ var userSchema = new Schema(
           isCorrect: Boolean
         }],
       }],
-    quizesPassed: Number,
-    quizesFailed: Number
+    quizzesPassed: Number,
+    quizzesFailed: Number
   }
 );
 

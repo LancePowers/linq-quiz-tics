@@ -67,15 +67,33 @@ Quiz.prototype.checkFailQuiz= function(){
       this.isDone = true;
       this.score = this.results.questionsCorrect;
       $('#sudden-death-content').html(this.getResultsElement());
+      updateUserQuizzes(this);
     }
   } else if (this.type === 'twenty-questions'){
     if (this.results.questionsIncorrect >= 5 || this.results.questionsAnswered === 20) {
       this.isDone = true;
       this.score = this.results.questionsCorrect;
       $('#twenty-questions-content').html(this.getResultsElement());
+      updateUserQuizzes(this);
     }
   }
 };
+
+function updateUserQuizzes(quiz){
+  game.user.quizzes.push(quiz);
+  $.ajax({
+    method: "PUT",
+    url: "/user/"+game.user._id,
+    data:{
+      quizzes: game.user.quizzes
+    }
+  }).done(function(data){
+    console.log(data)
+  }).fail(function(err){
+    console.log(err)
+  });
+}
+
 
 // constructor for results
 function Results(qA, qC, qI, qR){

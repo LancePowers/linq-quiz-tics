@@ -147,3 +147,9 @@ background-color: #030033;
   .navbar-default .navbar-nav > li > a {
    color: white; /*Change active text color here*/
     }
+
+  .bigger {
+    font-size: 2rem;
+    height: 2.2rem;
+    width: auto;
+  }
