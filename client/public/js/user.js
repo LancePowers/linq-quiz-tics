@@ -22,9 +22,9 @@ User.prototype.getStats = function () {
     }
     if(
       this.quizzes[i].type === "quick-fire" &&
-      this.quizzes[i].score > stats.sdHigh.score
+      this.quizzes[i].score > stats.qfHigh.score
     ){
-      stats.sdHigh = this;
+      stats.qfHigh = this;
     }
     if(
       this.quizzes[i].type === "twenty-questions" &&
