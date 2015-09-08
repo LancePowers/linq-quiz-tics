@@ -4,13 +4,13 @@ $(document).on('ready', function(){
    keyboard:false,
    show:true
  });
-})
+});
 
 // Button on login modal to setup session
 $('#game-init-button').on('click', function () {
   game = new Game();
   game.question = new Question(game.getWord('Easy'));
-})
+});
 
 // Practice button
 $('#practice').on('click', function(event){
@@ -24,7 +24,7 @@ $('#practice').on('click', function(event){
     $(this).html('Next');
     game.question.answer(this.id);
   }
-})
+});
 
 
 $('#start-sudden-death').on('click', function(){
@@ -33,7 +33,7 @@ $('#start-sudden-death').on('click', function(){
   game.quiz.createQuestions(100);
   game.question = game.quiz.questions[0];
   game.question.show('sudden-death');
-})
+});
 // Sudden Death Button
 $(document).on('submit', '#sudden-death', function(event){
   event.preventDefault();
@@ -47,7 +47,7 @@ $(document).on('submit', '#sudden-death', function(event){
     $(button).html('Next');
     game.question.answer(this.id);
   }
-})
+});
 
 // Twenty Questions Button
 

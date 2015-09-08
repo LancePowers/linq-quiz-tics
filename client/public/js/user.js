@@ -21,4 +21,4 @@ User.prototype.updatePassFail = function () {
   }
 };
 
-module.exports = User;
+// module.exports = User;

@@ -40,7 +40,7 @@ Quiz.prototype.nextQuestion= function(){
   this.updateResults();
   this.checkFailQuiz();
   if(this.isDone){
-    alert('challenge complete')// replace with results render
+    alert('challenge complete');// replace with results render
     //save quiz results
   } else {
     game.question = this.questions[this.results.questionsAnswered];
@@ -107,12 +107,4 @@ Quiz.prototype.createQuizElement = function(){
         </div> \
     </div>';
   return element;
-}
-
-
-
-
-
-
-
-module.exports = Quiz;
+};

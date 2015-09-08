@@ -1,26 +1,26 @@
 // var key1 = require('../../keys');
-// var bt = require('bing-translate').init({
-//   client_id: 'Linquiztics',
-//   client_secret: key1
-// });
 
 // constructor
 function Question(word){
   this.userAnswer = null;
   this.word = word;
-  this.translatedWord = 'hola'; // substitute with ajax call
+  this.translatedWord = $.get('/translate', function(req, res,){console.log(res)});
   this.isCorrect = null;
 }
 
 
 // Show's the word and any quiz specifics
-Question.prototype.show = function(challenge) {
+Question.prototype.show = function(event) {
+  var button = event.toElement;
+  var challenge = $(button).attr('id');
   $('#'+challenge+'-word').html(this.word).css('color','#fff');
   $('#'+challenge+'-translated-word').html('Extra').css('color','#18bc9c');
 };
 
 // Show's the answer and whether or not it was correct
-Question.prototype.answer = function (challenge) {
+Question.prototype.answer = function (event) {
+  var button = event.toElement;
+  var challenge = $(button).attr('id');
   this.userAnswer = $('#'+challenge+'-answer').val();
   this.checkUserAnswer();
   if(!this.isCorrect){
@@ -34,7 +34,8 @@ Question.prototype.answer = function (challenge) {
 Question.prototype.getTranslation = function(word, langFrom,langTo ){
   bt.translate(word,langFrom,langTo, function(err, res){
     console.log(err, res);
-    return res;
+    this.translatedWord = res;
+    console.log(this.translatedWord);
   });
 };
 
@@ -56,7 +57,7 @@ Question.prototype.checkUserAnswer = function(){
 Question.prototype.isAcceptable = function(){
   var count = 0;
   for (var i = 0; i < this.userAnswer.length; i++) {
-    if (this.translatedWord[i] !== this.userAnswer[i]){
+    if (this.translatedWord.word[i] !== this.userAnswer[i]){
       count++;
     }
   }
@@ -66,4 +67,4 @@ Question.prototype.isAcceptable = function(){
   else return true;
 };
 
-module.exports = Question;
+// module.exports = Question;

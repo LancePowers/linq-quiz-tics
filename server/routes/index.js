@@ -2,6 +2,10 @@ var express = require('express');
 var router = express.Router();
 var crud = require("../logic/crud.js");
 
+var bt = require('bing-translate').init({
+  client_id: 'Linquiztics',
+  client_secret: process.env.KEY_1
+});
 
 router.get('/user', function(req, res, next) {
   // test = new Question();
@@ -30,7 +34,10 @@ router.get('/wordlibrary', function(req, res, next) {
 router.post('/wordlibrary', function(req, res, next) {
   res.render('index', { title: 'Node-Translate' });
 });
-
+router.get("/translate", function(req, res, next){
+  var response = bt.translate(req.body.word, req.body.langFrom, req.body.langTo);
+  res.json(response);
+});
 
 
 
