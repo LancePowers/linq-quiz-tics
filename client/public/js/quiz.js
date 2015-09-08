@@ -1,10 +1,10 @@
 // constructor
-function Quiz(language,type){
-  this.languageChoice= language; // change to game.language
+function Quiz(type, difficulty){
   this.questions = [];
   this.currentQuestion= 0;
   this.results = new Results(0, 0, 0, 0);
   this.type = type;
+  this.difficulty = null;
 }
 
 // Populates the questions array. Pass in number based upon quiz type.
@@ -72,19 +72,19 @@ Quiz.prototype.createQuizElement = function(){
   var element =
     '<div class="container success" style = "background-color: #18bc9c"> \
         <div class="row"> \
-            <div class="col-lg-6 text-center"> \
+            <div class="col-lg-8 col-lg-offset-2 text-center"> \
                 <h2 id="'+game.quiz.type+'-word">Challenge</h2> \
                 <hr class="star-light"> \
                 <h2 id="'+game.quiz.type+'-translated-word"></h2> \
             </div> \
         </div> \
         <div class="row"> \
-            <div class="col-lg-6"> \
-                <form name="question" id="'+game.quiz.type+'" novalidate> \
+            <div class="col-lg-8 col-lg-offset-2"> \
+                <form name="question"id="'+game.quiz.type+'" class="challenge" > \
                     <div class="row control-group"> \
                         <div class=" white-background form-group col-xs-12 floating-label-form-group controls"> \
                             <label>Answer</label> \
-                            <input type="text" class="form-control" placeholder="Click Start To Challenge" id="'+game.quiz.type+'-answer"> \
+                            <input type="text" class="form-control" placeholder="Choose Difficulty" id="'+game.quiz.type+'-answer"> \
                             <p class="help-block text-danger"></p> \
                         </div> \
                     </div> \
@@ -92,10 +92,10 @@ Quiz.prototype.createQuizElement = function(){
                     <div id="success"></div> \
                     <div class="row"> \
                         <div class="form-group col-xs-6"> \
-                            <button class="btn btn-lg">Answer</button> \
+                            <button class="btn btn-lg" >Choose</button> \
                         </div> \
                         <div class="from-group col-xs-6"> \
-                          <select class="form-control" id="'+game.quiz.type+'-difficulty"> \
+                          <select class="form-control" id ="'+game.quiz.type+'-difficulty"> \
                             <option>Easy</option> \
                             <option>Medium</option> \
                             <option>Hard</option> \
@@ -105,7 +105,7 @@ Quiz.prototype.createQuizElement = function(){
                 </form> \
             </div> \
         </div> \
-    </div>';
+      </div>';
   return element;
 }
 
