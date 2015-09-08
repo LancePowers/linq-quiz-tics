@@ -19,7 +19,7 @@ Game.prototype.getWord = function(difficulty,array){
   }
   if(array){ return words }
   var index = Math.floor(Math.random() * words.length);
-  return words.splice(index, 1);
+  return words[index];
 };
 
 Game.prototype.init = function () {

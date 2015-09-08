@@ -22,7 +22,7 @@ $('#practice').on('click', function(event){
   var difficulty = $('#'+this.id+'-difficulty option:selected').html();
   if($(this).html()==='Start' || $(this).html()==='Next'){
     $(this).html('Answer');
-    game.question = new Question(game.getWord(difficulty)[0]);
+    game.question = new Question(game.getWord(difficulty));
     game.question.show(this.id);
   }else if($(this).html()==='Answer'){
     $(this).html('Next');
