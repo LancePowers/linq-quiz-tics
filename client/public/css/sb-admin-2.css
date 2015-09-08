@@ -352,3 +352,9 @@ table.dataTable thead .sorting:after {
 .panel-yellow a:hover {
     color: #df8a13;
 }
+
+  .bigger {
+    font-size: 2.4rem;
+/*    height: 2.5rem;
+    width: auto;*/
+  }

@@ -4,17 +4,21 @@ $(document).on('ready', function(){
    keyboard:false,
    show:true
  });
+ checkForUsers();
 })
 
 // Button on login modal to setup session
 $('#game-init-button').on('click', function () {
   game = new Game();
+  game.init();
+  game.setUser();
   game.question = new Question(game.getWord('Easy'));
 })
 
 // Practice button
 $('#practice').on('click', function(event){
   event.preventDefault();
+  console.log("in practice: "+game.user.name)
   var difficulty = $('#'+this.id+'-difficulty option:selected').html();
   if($(this).html()==='Start' || $(this).html()==='Next'){
     $(this).html('Answer');
@@ -65,6 +69,23 @@ $(document).on('submit', '.challenge', function(event){
     game.question.answer(this.id);
   }
 })
+
+
+// populate modal with users from DB
+var checkForUsers = function(){
+  $.ajax({
+    method: "GET",
+    url: "/user"
+  }).done(function(data){
+    var select = $("#name-select")[0];
+    var $select = $(select);
+    for (var i = 0; i < data.length; i++) {
+      $select.append("<option id='" + data[i]._id +"'>"+data[i].name+"</option>");
+    };
+  }).fail(function(err){
+    console.log(err);
+  });
+};
 
 // Twenty Questions Button
 

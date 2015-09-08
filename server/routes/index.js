@@ -4,9 +4,9 @@ var crud = require("../logic/crud.js");
 
 
 router.get('/user', function(req, res, next) {
-  // test = new Question();
-  // test.getTranslation("hello");
-  res.render('index', { title: 'Node-Translate' });
+  crud.handleGet(function(data){
+    res.json(data);
+  })
 });
 
 router.get('/', function(req, res, next) {
@@ -18,8 +18,10 @@ router.post('/user', function(req, res, next) {
   res.json(response);
 });
 
-router.put('/user', function(req, res, next) {
-  res.render('index', { title: 'Node-Translate' });
+router.put('/user/:id', function(req, res, next) {
+  crud.handlePut(req.params.id, req.body.quizzes, function(data){
+    res.json(data);
+  });
 });
 
 // word library
@@ -31,6 +33,12 @@ router.post('/wordlibrary', function(req, res, next) {
   res.render('index', { title: 'Node-Translate' });
 });
 
+
+router.get('/user/:id', function(req, res, next) {
+  crud.handleGetOne(req.params.id, function (data) {
+    res.json(data);
+  });
+});
 
 
 
