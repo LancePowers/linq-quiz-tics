@@ -42,7 +42,7 @@ $('#start-twenty-questions').on('click', function(){
 $('#start-rapid-fire').on('click', function(){
   event.preventDefault();
   game.quiz = new Quiz('rapid-fire');
-  var timer = setTimeout(function(){startTimer(), 5 * 60 * 1000});
+  var timer = setTimeout(function(){game.quiz.timer()}, 1 * 60 * 1000);
   $('#rapid-fire-content').html(game.quiz.createQuizElement);
 })
 

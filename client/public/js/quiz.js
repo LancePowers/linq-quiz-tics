@@ -46,9 +46,10 @@ Quiz.prototype.updateResults= function(){
 
 };
 
-Quiz.prototype.startTimer = function () {
+Quiz.prototype.timer = function () {
   this.isDone = true;
-  this.score = this.results.questionsCorrect;
+  this.nextQuestion();
+  console.log('done');
 };
 
 //
@@ -57,6 +58,11 @@ Quiz.prototype.nextQuestion= function(){
   this.checkFailQuiz();
   if(!this.isDone){
     game.question = this.questions[this.results.questionsAnswered];
+  } else {
+    game.user.quizzes.push(this);
+    $('#'+this.type+'-content').html(this.getResultsElement());
+    this.score = this.results.questionsCorrect;
+    game.quiz = null;
   }
 };
 
@@ -65,14 +71,10 @@ Quiz.prototype.checkFailQuiz= function(){
   if(this.type === 'sudden-death'){
     if(!game.question.isCorrect){
       this.isDone = true;
-      this.score = this.results.questionsCorrect;
-      $('#sudden-death-content').html(this.getResultsElement());
     }
   } else if (this.type === 'twenty-questions'){
     if (this.results.questionsIncorrect >= 5 || this.results.questionsAnswered === 20) {
       this.isDone = true;
-      this.score = this.results.questionsCorrect;
-      $('#twenty-questions-content').html(this.getResultsElement());
     }
   }
 };
