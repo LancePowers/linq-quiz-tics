@@ -22,7 +22,7 @@ Quiz.prototype.createQuestions = function (num) {
   this.results.questionsRemaining = num;
   for (var i = 0; i < num; i++) {
     var index = Math.floor(Math.random() * words.length);
-    var word = words.splice(index, 1);
+    var word = words.splice(index, 1)[0];
     this.questions.push(
       new Question(word)
     );
