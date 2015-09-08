@@ -21,8 +21,21 @@ function handleGetOne(id, cb) {
   });
 }
 
+function handlePut(id, quizzesArray, cb) {
+  var query = {_id: id};
+  var update = {quizzes: quizzesArray};
+  var option = {new: true};
+  db.User.findOneAndUpdate(query, update, option, function(err, data){
+  console.log("in crud put");
+    cb(data);
+  });
+}
+
+
+
 module.exports = {
   handlePost: handlePost,
   handleGet: handleGet,
-  handleGetOne: handleGetOne
+  handleGetOne: handleGetOne,
+  handlePut: handlePut
 }

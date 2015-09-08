@@ -60,7 +60,7 @@ Game.prototype.setUser = function(){
     }).fail ( function (err) {
       console.log(err);
     });
-    this.user = new User(nameInput);
+    self.user = new User(nameInput);
   }
   else if(nameSelect.html() !== "Select Name"){
     var id = $(nameSelect).attr('id');

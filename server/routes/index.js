@@ -18,8 +18,10 @@ router.post('/user', function(req, res, next) {
   res.json(response);
 });
 
-router.put('/user', function(req, res, next) {
-  res.render('index', { title: 'Node-Translate' });
+router.put('/user/:id', function(req, res, next) {
+  crud.handlePut(req.params.id, req.body.quizzes, function(data){
+    res.json(data);
+  });
 });
 
 // word library

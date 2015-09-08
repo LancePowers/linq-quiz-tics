@@ -57,16 +57,32 @@ Quiz.prototype.checkFailQuiz= function(){
     if(!game.question.isCorrect){
       this.isDone = true;
       this.score = this.questionsAnswered;
-      // save to database
+      updateUserQuizzes(this);
     }
   } else if (this.type === 'twenty-questions'){
     if (this.results.questionsIncorrect >= 5 || this.results.questionsAnswered === 20) {
       this.isDone = true;
       this.score = this.results.questionsCorrect;
-      // save to database
+      updateUserQuizzes(this);
     }
   }
 };
+
+function updateUserQuizzes(quiz){
+  game.user.quizzes.push(quiz);
+  $.ajax({
+    method: "PUT",
+    url: "/user/"+game.user._id,
+    data:{
+      quizzes: game.user.quizzes
+    }
+  }).done(function(data){
+    console.log(data)
+  }).fail(function(err){
+    console.log(err)
+  });
+}
+
 
 // constructor for results
 function Results(qA, qC, qI, qR){
