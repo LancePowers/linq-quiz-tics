@@ -18,7 +18,7 @@ User.prototype.getStats = function () {
       this.quizzes[i].type === "sudden-death" &&
       this.quizzes[i].score > stats.sdHigh
     ){
-      //get quiz 
+      //get quiz
     }
     //if its this challenge & its higher than the current
   }
@@ -36,6 +36,14 @@ User.prototype.updatePassFail = function () {
       this.quizzesPassed ++;
     }
   }
+};
+
+User.prototype.showStats = function() {
+  var stats = this.getStats();
+  var totalPassed = stats.passed;
+  $('#high-score-sudden-death').html(stats.sdHigh.score);
+  $('#high-score-rapid-fire').html(stats.rfHigh.score);
+  $('#high-score-twenty-questions').html(stats.tqHigh.score);
 };
 
 module.exports = User;
