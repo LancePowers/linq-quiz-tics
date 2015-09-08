@@ -6,7 +6,15 @@ function Quiz(type, difficulty){
   this.type = type;
   this.difficulty = null;
   this.score = 0;
+  this.isDone = false;
 }
+
+/////////////// TO DO /////////////////
+// link up to stats (use a #link to open the modal and then call the results function)
+// reset the modals
+// create challenge specific message
+// test timeout function
+
 
 // Populates the questions array. Pass in number based upon quiz type.
 Quiz.prototype.createQuestions = function (num) {
@@ -23,30 +31,31 @@ Quiz.prototype.createQuestions = function (num) {
 
 // update results as quiz progresses
 Quiz.prototype.updateResults= function(){
-  // this takes care of questions answered and questions remaining
-  for (var i = 0; i < this.questions.length; i++) {
+  for (var i = this.results.questionsAnswered; i < this.questions.length; i++) {
     if (this.questions[i].userAnswer !== null ) {
       this.results.questionsAnswered ++;
+      console.log(this.results.questionsAnswered)
       this.results.questionsRemaining --;
-    }
-    if (this.questions[i].isCorrect) {
-      this.results.questionsCorrect ++;
-    } else {
-      this.results.questionsIncorrect ++;
+      if (this.questions[i].isCorrect) {
+        this.results.questionsCorrect ++;
+      } else {
+        this.results.questionsIncorrect ++;
+      }
     }
   }
 
 };
 
 Quiz.prototype.startTimer = function () {
-  // body...
+  this.isDone = true;
+  this.score = this.results.questionsCorrect;
 };
 
 //
 Quiz.prototype.nextQuestion= function(){
   this.updateResults();
   this.checkFailQuiz();
-  if(this.isDone){
+  if(!this.isDone){
     game.question = this.questions[this.results.questionsAnswered];
   }
 };
@@ -56,17 +65,35 @@ Quiz.prototype.checkFailQuiz= function(){
   if(this.type === 'sudden-death'){
     if(!game.question.isCorrect){
       this.isDone = true;
-      this.score = this.questionsAnswered;
-      // save to database
+      this.score = this.results.questionsCorrect;
+      $('#sudden-death-content').html(this.getResultsElement());
+      updateUserQuizzes(this);
     }
   } else if (this.type === 'twenty-questions'){
     if (this.results.questionsIncorrect >= 5 || this.results.questionsAnswered === 20) {
       this.isDone = true;
       this.score = this.results.questionsCorrect;
-      // save to database
+      $('#twenty-questions-content').html(this.getResultsElement());
+      updateUserQuizzes(this);
     }
   }
 };
+
+function updateUserQuizzes(quiz){
+  game.user.quizzes.push(quiz);
+  $.ajax({
+    method: "PUT",
+    url: "/user/"+game.user._id,
+    data:{
+      quizzes: game.user.quizzes
+    }
+  }).done(function(data){
+    console.log(data)
+  }).fail(function(err){
+    console.log(err)
+  });
+}
+
 
 // constructor for results
 function Results(qA, qC, qI, qR){

@@ -22,23 +22,57 @@ Game.prototype.getWord = function(difficulty,array){
   var index = Math.floor(Math.random() * words.length);
   return words.splice(index, 1);
 };
+
 Game.prototype.init = function () {
-  var name = $('#name-input').val();
   var langFrom = $('#lang-from').val();
-  var LangTo = $('#lang-to').val();
+  var langTo = $('#lang-to').val();
   this.langFrom = langFrom;
   this.langTo = langTo;
-  this.user = new User(name);
+};
+
+Game.prototype.checkForUsers = function(){
+  $.ajax({
+    method: "GET",
+    url: "/user"
+  }).done(function(data){
+    var $select = $($("#name-select")[0]);
+    for (var i = 0; i < data.length; i++) {
+      $select.append("<select>"+data[i].name+"</select>");
+    };
+  }).fail(function(err){
+    console.log(err);
+  });
 };
 
 Game.prototype.setUser = function(){
   var nameInput = $('#name-input').val();
-  var nameSelect = $('#name-select').prop("selected");
+  var nameSelect = $('#name-select').find("option:selected");
+  console.log($(nameSelect).attr('id'));
+  var self = this;
   if ($('#name-input').val().length > 0) {
-    this.user = nameInput;
+    $.ajax ({
+      method: "POST",
+      url: '/user',
+      data: {
+        name: nameInput
+      }
+    }).done ( function (data) {
+      return data;
+    }).fail ( function (err) {
+      console.log(err);
+    });
+    self.user = new User(nameInput);
   }
-  else if($('#name-select').prop("selected") !== "Select Name"){
-    this.user = nameSelect;
+  else if(nameSelect.html() !== "Select Name"){
+    var id = $(nameSelect).attr('id');
+    $.ajax({
+      method: "GET",
+      url: '/user/' + id
+    }).done( function (data) {
+      self.user = data[0];
+    }).fail ( function (err) {
+      console.log(err);
+    });
   }
   else {
     alert("Please select a user or create a new account.");
@@ -60,4 +94,49 @@ Game.prototype.renderResults= function(results){
 Game.prototype.renderFail = function () {
     $('#start-screen').show();
     $('#message').html("Sorry, you f'ed up!");
+};
+
+Game.prototype.resetChallenges = function () {
+  var suddenDeathInfo =
+    '<div class="row">\
+        <div class="col-lg-8 col-lg-offset-2">\
+            <div class="modal-body">\
+              <div>\
+                <h2>Sudden Death</h2>\
+                <hr class="star-primary">\
+                <img src="img/portfolio/cabin.png" class="img-responsive img-centered" alt="">\
+                <p>Think you can handle the pressure? One wrong word and it\'s game-over.</p>\
+                <button id="start-sudden-death" type="button" class="btn btn-default challenge-btn" ><i class="fa fa-times"></i> Start</button>\
+              </div>\
+            </div>\
+        </div>\
+    </div>';
+  var rapidFireInfo =
+  '<div class="row">\
+      <div class="col-lg-8 col-lg-offset-2">\
+          <div class="modal-body">\
+              <h2>Coming Soon: Rapid Fire</h2>\
+              <hr class="star-primary">\
+              <img src="img/portfolio/game.png" class="img-responsive img-centered" alt="">\
+              <p>You\'ve got 10 minutes to prove you know the lingo gringo. What do you say?</p>\
+              <button id="start-rapid-fire" type="button" class="btn btn-default challenge-btn"><i class="fa fa-times"></i> Close</button>\
+          </div>\
+      </div>\
+  </div>';
+  var twentyQuestionsInfo =
+  '<div class="row">\
+      <div class="col-lg-8 col-lg-offset-2">\
+          <div class="modal-body">\
+              <h2>Coming Soon: 20 Questions</h2>\
+              <hr class="star-primary">\
+              <img src="img/portfolio/cake.png" class="img-responsive img-centered" alt="">\
+              <p>20 questions to talk the talk. Get 5 wrong and you walk.</p>\
+              <button id="start-twenty-questions" type="button" class="btn btn-default challenge-btn"><i class="fa fa-times"></i> Close</button>\
+          </div>\
+      </div>\
+  </div>';
+  $('#sudden-death-content').html(suddenDeathInfo);
+  $('#rapid-fire-content').html(rapidFireInfo);
+  $('#twenty-questions-content').html(twentyQuestionsInfo);
+
 };

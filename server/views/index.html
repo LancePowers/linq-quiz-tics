@@ -168,7 +168,7 @@
                                     <img src="img/portfolio/sm-sudden-death-icon.png"/>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">13</div>
+                                    <div id="high-score-sudden-death" class="huge">0</div>
                                     <div>Sudden Death</div>
                                 </div>
                             </div>
@@ -191,7 +191,7 @@
                                     <img src="img/portfolio/sm-twenty-questions-icon.png"/>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
+                                    <div id="high-score-twenty-questions" class="huge">0</div>
                                     <div>Twenty Questions</div>
                                 </div>
                             </div>
@@ -214,7 +214,7 @@
                                     <img src="img/portfolio/sm-rapid-fire-icon.png"/>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">124</div>
+                                    <div id="high-score-rapid-fire" class="huge">0</div>
                                     <div>Rapid Fire</div>
                                 </div>
                             </div>
@@ -237,7 +237,7 @@
                                     <img src="img/portfolio/sm-profile.png"/>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
+                                    <div id="high-score-overall" class="huge">0</div>
                                     <div>Overall Stats</div>
                                 </div>
                             </div>
@@ -321,7 +321,7 @@
                             <hr class="star-primary">
                             <img src="img/portfolio/cabin.png" class="img-responsive img-centered" alt="">
                             <p>Think you can handle the pressure? One wrong word and it's game-over.</p>
-                            <button id='start-sudden-death' type="button" class="btn btn-default challenge-btn" ><i class="fa fa-times"></i> Start</button>
+                            <button id='start-sudden-death' type="button" class="btn btn-default challenge-btn" >Start</button>
                           </div>
                         </div>
                     </div>
@@ -341,11 +341,11 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Coming Soon: 20 Questions</h2>
+                            <h2>20 Questions</h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/cake.png" class="img-responsive img-centered" alt="">
                             <p>20 questions to talk the talk. Get 5 wrong and you walk.</p>
-                            <button id='start-twenty-questions' type="button" class="btn btn-default challenge-btn"><i class="fa fa-times"></i> Close</button>
+                            <button id='start-twenty-questions' type="button" class="btn btn-default challenge-btn">Start</button>
                         </div>
                     </div>
                 </div>
@@ -392,11 +392,13 @@
                  </div>
                </div>
                <div class="row">
-                 <div class="col-md-6">
-                   <input class="-input center" type="text" id="name-input" placeholder="Johnny Doing..." >
-                   - OR -
+                 <div class="col-md-5">
+                   <input class="form-control input center" type="text" id="name-input" placeholder="Johnny Doing..." >
                  </div>
-                 <div class="col-md-6">
+                   <div class="col-md-2 bigger">
+                   <span id="bigger">- OR -</span>
+                   </div>
+                 <div class="col-md-5">
                   <select class="form-control" id="name-select">
                     <option>Select Name</option>
                   </select>
