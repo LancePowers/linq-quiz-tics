@@ -24,16 +24,16 @@ User.prototype.getStats = function () {
       this.quizzes[i].type === "quick-fire" &&
       this.quizzes[i].score > stats.qfHigh.score
     ){
-      stats.qfHigh = this;
+      stats.qfHigh = this.quizzes[i];
     }
     if(
       this.quizzes[i].type === "twenty-questions" &&
-      this.quizzes[i].score > stats.sdHigh.score
+      this.quizzes[i].score > stats.tqHigh.score
     ){
-      stats.sdHigh = this;
+      stats.tqHigh = this.quizzes[i];
     }
-    //if its this challenge & its higher than the current
   }
+  return stats;
 };
 
 User.prototype.addQuiz = function(quiz){
