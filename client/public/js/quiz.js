@@ -5,6 +5,7 @@ function Quiz(type, difficulty){
   this.results = new Results(0, 0, 0, 0);
   this.type = type;
   this.difficulty = null;
+  this.score = 0;
 }
 
 // Populates the questions array. Pass in number based upon quiz type.
@@ -30,9 +31,15 @@ Quiz.prototype.updateResults= function(){
     }
     if (this.questions[i].isCorrect) {
       this.results.questionsCorrect ++;
+    } else {
+      this.results.questionsIncorrect ++;
     }
   }
 
+};
+
+Quiz.prototype.startTimer = function () {
+  // body...
 };
 
 //
@@ -40,9 +47,6 @@ Quiz.prototype.nextQuestion= function(){
   this.updateResults();
   this.checkFailQuiz();
   if(this.isDone){
-    alert('challenge complete')// replace with results render
-    //save quiz results
-  } else {
     game.question = this.questions[this.results.questionsAnswered];
   }
 };
@@ -52,10 +56,14 @@ Quiz.prototype.checkFailQuiz= function(){
   if(this.type === 'sudden-death'){
     if(!game.question.isCorrect){
       this.isDone = true;
+      this.score = this.questionsAnswered;
+      // save to database
     }
   } else if (this.type === 'twenty-questions'){
     if (this.results.questionsIncorrect >= 5 || this.results.questionsAnswered === 20) {
       this.isDone = true;
+      this.score = this.results.questionsCorrect;
+      // save to database
     }
   }
 };
