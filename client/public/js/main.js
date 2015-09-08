@@ -30,19 +30,20 @@ $('#practice').on('click', function(event){
 $('#start-sudden-death').on('click', function(){
   event.preventDefault();
   game.quiz = new Quiz('sudden-death');
-  $('#sudden-death-content').html(game.quiz.createQuizElement);//()?
+  $('#sudden-death-content').html(game.quiz.createQuizElement);
 });
 
 $('#start-twenty-questions').on('click', function(){
   event.preventDefault();
   game.quiz = new Quiz('twenty-questions');
-  $('#twenty-questions-content').html(game.quiz.createQuizElement);//()?
+  $('#twenty-questions-content').html(game.quiz.createQuizElement);
 });
 
 $('#start-rapid-fire').on('click', function(){
   event.preventDefault();
   game.quiz = new Quiz('rapid-fire');
-  $('#rapid-fire-content').html(game.quiz.createQuizElement);//()?
+  var timer = setTimeout(function(){startTimer(), 5 * 60 * 1000});
+  $('#rapid-fire-content').html(game.quiz.createQuizElement);
 })
 
 $(document).on('submit', '.challenge', function(event){

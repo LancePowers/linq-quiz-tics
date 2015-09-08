@@ -60,3 +60,48 @@ Game.prototype.renderFail = function () {
     $('#start-screen').show();
     $('#message').html("Sorry, you f'ed up!");
 };
+
+Game.prototype.resetChallenges = function () {
+  var suddenDeathInfo =
+    '<div class="row">\
+        <div class="col-lg-8 col-lg-offset-2">\
+            <div class="modal-body">\
+              <div>\
+                <h2>Sudden Death</h2>\
+                <hr class="star-primary">\
+                <img src="img/portfolio/cabin.png" class="img-responsive img-centered" alt="">\
+                <p>Think you can handle the pressure? One wrong word and it\'s game-over.</p>\
+                <button id="start-sudden-death" type="button" class="btn btn-default challenge-btn" ><i class="fa fa-times"></i> Start</button>\
+              </div>\
+            </div>\
+        </div>\
+    </div>';
+  var rapidFireInfo =
+  '<div class="row">\
+      <div class="col-lg-8 col-lg-offset-2">\
+          <div class="modal-body">\
+              <h2>Coming Soon: Rapid Fire</h2>\
+              <hr class="star-primary">\
+              <img src="img/portfolio/game.png" class="img-responsive img-centered" alt="">\
+              <p>You\'ve got 10 minutes to prove you know the lingo gringo. What do you say?</p>\
+              <button id="start-rapid-fire" type="button" class="btn btn-default challenge-btn"><i class="fa fa-times"></i> Close</button>\
+          </div>\
+      </div>\
+  </div>';
+  var twentyQuestionsInfo =
+  '<div class="row">\
+      <div class="col-lg-8 col-lg-offset-2">\
+          <div class="modal-body">\
+              <h2>Coming Soon: 20 Questions</h2>\
+              <hr class="star-primary">\
+              <img src="img/portfolio/cake.png" class="img-responsive img-centered" alt="">\
+              <p>20 questions to talk the talk. Get 5 wrong and you walk.</p>\
+              <button id="start-twenty-questions" type="button" class="btn btn-default challenge-btn"><i class="fa fa-times"></i> Close</button>\
+          </div>\
+      </div>\
+  </div>';
+  $('#sudden-death-content').html(suddenDeathInfo);
+  $('#rapid-fire-content').html(rapidFireInfo);
+  $('#twenty-questions-content').html(twentyQuestionsInfo);
+
+};
