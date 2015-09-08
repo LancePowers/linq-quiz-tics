@@ -35,10 +35,20 @@ router.post('/wordlibrary', function(req, res, next) {
   res.render('index', { title: 'Node-Translate' });
 });
 router.get("/translate", function(req, res, next){
-  var response = bt.translate(req.body.word, req.body.langFrom, req.body.langTo);
+var response;
+  console.log("req!",req);
+   bt.translate("hello","en","es",function(err, res){
+    response =res.translated_text;
+   console.log(res.translated_text);
+  // console.log(res.translated_text);
+  });
+  console.log("response!", response);
   res.json(response);
 });
 
+  // console.log(bt.translate("hello","en","es", function(err, res){
+  //   console.log(err, res);
+  // }));
 
 
 module.exports = router;

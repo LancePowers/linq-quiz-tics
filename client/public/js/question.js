@@ -4,7 +4,22 @@
 function Question(word){
   this.userAnswer = null;
   this.word = word;
-  this.translatedWord = $.get('/translate', function(req, res,){console.log(res)});
+  this.translatedWord =    $.ajax({
+   url: "/translate",
+   method: 'GET',
+   dataType: 'json',
+   data: {word:this.word,
+          langFrom:game.langFrom || "en",
+          langTo:game.langTo || "es"
+      }
+ });
+ request.done(function(response){
+   console.log(response);
+ });
+
+$.get('/translate', function(response){
+    console.log(response + "asdf");
+  });
   this.isCorrect = null;
 }
 

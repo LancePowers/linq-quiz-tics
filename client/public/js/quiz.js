@@ -178,4 +178,4 @@ Quiz.prototype.resultsTable  =  function() {
 };
 
 
-module.exports = Quiz;
+// module.exports = Quiz;
