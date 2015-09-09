@@ -46,10 +46,8 @@ router.get('/user/:id', function(req, res, next) {
 
 router.post('/translate', function(req, res, next) {
   var response;
-  console.log(req.body);
   bt.translate(req.body.word, "en", "es", function(err, result){
     response = result.translated_text;
-    console.log("spanish?: "+response);
     res.json(response);
   });
 });

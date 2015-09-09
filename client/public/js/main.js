@@ -71,7 +71,9 @@ $(document).on('submit', '.challenge', function(event){
   }else if($(button).html()==='Next'){
     $(button).html('Answer');
     game.quiz.nextQuestion();
-    game.question.show(this.id);
+    if(this.id) {
+      game.question.show(this.id);
+    }
   }else if($(button).html()==='Answer'){
     $(button).html('Next');
     if(!game.quiz.isDone){

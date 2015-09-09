@@ -21,8 +21,8 @@ function Question(word){
           }
     }).done(function(response){
       self.translatedWord = response;
-      console.log(response);
-      console.log(self);
+      // console.log(response);
+      // console.log(self);
     }).fail(function(err){
       console.log(err);
     });
@@ -38,6 +38,7 @@ Question.prototype.show = function(challenge) {
 
 // Show's the answer and whether or not it was correct
 Question.prototype.answer = function (challenge) {
+  console.log(game.question)
   this.userAnswer = $('#'+challenge+'-answer').val();
   $('#'+challenge+'-answer').val('');
   $('#'+challenge+'-answer').attr('placeholder','Click Next');

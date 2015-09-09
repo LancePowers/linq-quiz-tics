@@ -46,9 +46,9 @@ Game.prototype.checkForUsers = function(){
 Game.prototype.updateUserQuizzes = function () {
     $.ajax({
       method: "PUT",
-      url: "/user/"+this.user._id,
+      url: "/user/"+game.user._id,
       data:{
-        quizzes: this.user.quizzes
+        quizzes: game.user.quizzes
       }
     }).done(function(data){
       console.log(data)
@@ -75,7 +75,7 @@ Game.prototype.setUser = function(){
       console.log(err);
     });
     self.user = new User(nameInput);
-    $('#start-modal').modal("hide")
+    // $('#start-modal').modal("hide")
   }
   else if(nameSelect.html() !== "Select Name"){
     var id = $(nameSelect).attr('id');
@@ -87,7 +87,7 @@ Game.prototype.setUser = function(){
     }).fail ( function (err) {
       console.log(err);
     });
-    $('#start-modal').modal("hide")
+    // $('#start-modal').modal("hide")
   }
   else {
     alert("Please select a user or create a new account.");
