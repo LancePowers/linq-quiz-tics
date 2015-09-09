@@ -61,6 +61,7 @@ Game.prototype.setUser = function(){
       console.log(err);
     });
     self.user = new User(nameInput);
+    $('#start-modal').modal("hide")
   }
   else if(nameSelect.html() !== "Select Name"){
     var id = $(nameSelect).attr('id');
@@ -72,6 +73,7 @@ Game.prototype.setUser = function(){
     }).fail ( function (err) {
       console.log(err);
     });
+    $('#start-modal').modal("hide")
   }
   else {
     alert("Please select a user or create a new account.");
