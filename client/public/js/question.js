@@ -9,7 +9,7 @@ function Question(word){
   var self = this;
   this.userAnswer = null;
   this.word = word;
-  this.translatedWord = null; // substitute with ajax call
+  this.translatedWord = null;
   this.isCorrect = null;
   $.ajax({
     url: "/translate",
