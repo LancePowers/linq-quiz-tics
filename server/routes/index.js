@@ -54,10 +54,5 @@ router.post('/translate', function(req, res, next) {
   });
 });
 
-bt.translate("word", "en", "es", function(err, result){
-    result.translated_text;
-    console.log(result);
-    res.json(response);
-  });
 
 module.exports = router;
