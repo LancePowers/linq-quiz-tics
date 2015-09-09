@@ -6,10 +6,26 @@
 
 // constructor
 function Question(word){
+  var self = this;
   this.userAnswer = null;
   this.word = word;
-  this.translatedWord = 'hola'; // substitute with ajax call
+  this.translatedWord = null; // substitute with ajax call
   this.isCorrect = null;
+  $.ajax({
+    url: "/translate",
+    method: 'POST',
+    data: {
+            word: word,
+            langFrom:"en",
+            langTo:"es"
+          }
+    }).done(function(response){
+      self.translatedWord = response;
+      console.log(response);
+      console.log(self);
+    }).fail(function(err){
+      console.log(err);
+    });
 }
 
 
@@ -31,7 +47,7 @@ Question.prototype.answer = function (challenge) {
   } else {
     $('#'+challenge+'-word').html('Correct!').css('color','#fff');
   }
-  $('#'+challenge+'-translated-word').html(this.word+': Hola').css('color','#fff');
+  $('#'+challenge+'-translated-word').html(this.word+': '+this.translatedWord).css('color','#fff');
 };
 
 Question.prototype.getTranslation = function(word, langFrom,langTo ){
