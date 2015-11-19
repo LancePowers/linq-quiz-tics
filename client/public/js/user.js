@@ -12,7 +12,7 @@ User.prototype.getStats = function () {
     sdHigh: null,
     qfHigh: null,
     tqHigh: null,
-  }
+  };
   for (var i = 0; i < this.quizzes.length; i++) {
     if(
       this.quizzes[i].type === "sudden-death" &&
