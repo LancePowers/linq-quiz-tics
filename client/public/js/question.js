@@ -85,4 +85,4 @@ Question.prototype.isAcceptable = function(){
   else return true;
 };
 
-module.exports = Question;
+//module.exports = Question;
