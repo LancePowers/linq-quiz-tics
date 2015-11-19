@@ -58,4 +58,4 @@ User.prototype.showStats = function() {
   $('#high-score-twenty-questions').html(stats.tqHigh.score);
 };
 
-module.exports = User;
+//module.exports = User;
