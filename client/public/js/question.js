@@ -11,21 +11,25 @@ function Question(word){
   this.word = word;
   this.translatedWord = null;
   this.isCorrect = null;
+    console.log(game.langFrom);
+    console.log(game.langTo);
+
   $.ajax({
     url: "/translate",
     method: 'POST',
     data: {
             word: word,
-            langFrom:"en",
-            langTo:"es"
+            langFrom:game.langFrom,
+            langTo:game.langTo,
           }
     }).done(function(response){
       self.translatedWord = response;
-      console.log(response);
-      console.log(self);
+      // console.log(response);
+      // console.log(self);
     }).fail(function(err){
-      console.log(err);
+      // console.log(err);
     });
+  // this.getTranslation(word,'en', 'es');
 }
 
 
