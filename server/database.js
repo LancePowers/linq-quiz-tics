@@ -1,10 +1,12 @@
 var mongoose = require('mongoose');
 var Schema   = mongoose.Schema;
 
-var User = new Schema(
+var userSchema = new Schema(
   {
     name: String,
-    quizes: [{
+    quizzes: [{
+        score: Number,
+        type: String,
         languageChoice: String,
         currentQuestion: Number,
         isFailed: Boolean,
@@ -13,20 +15,24 @@ var User = new Schema(
           questionsAnswered: Number,
           questionsCorrect: Number,
           questionsIncorrect: Number,
-          questionsRemaining: Number,
+          questionsRemaining: Number
         },
         questions: [{
           userAnswer: String,
           word: String,
           translatedWord: String,
-          isCorrect: Boolean,
+          isCorrect: Boolean
         }],
       }],
-    quizesPassed: Number,
-    quizesFailed: Number,
+    quizzesPassed: Number,
+    quizzesFailed: Number
   }
 );
 
-mongoose.model('users', User);
+var User = mongoose.model('users', userSchema);
 
-mongoose.connect('mongodb://localhost/node-user');
+mongoose.connect('mongodb://localhost/node-lingo');
+
+module.exports = {
+  User: User
+}

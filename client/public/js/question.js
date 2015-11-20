@@ -6,33 +6,48 @@
 
 // constructor
 function Question(word){
+  var self = this;
   this.userAnswer = null;
   this.word = word;
-  this.translatedWord = 'hola'; // substitute with ajax call
+  this.translatedWord = null;
   this.isCorrect = null;
+  $.ajax({
+    url: "/translate",
+    method: 'POST',
+    data: {
+            word: word,
+            langFrom:"en",
+            langTo:"es"
+          }
+    }).done(function(response){
+      self.translatedWord = response;
+      console.log(response);
+      console.log(self);
+    }).fail(function(err){
+      console.log(err);
+    });
 }
 
 
 // Show's the word and any quiz specifics
-Question.prototype.show = function(event) {
-  var button = event.toElement;
-  var challenge = $(button).attr('id');
+Question.prototype.show = function(challenge) {
   $('#'+challenge+'-word').html(this.word).css('color','#fff');
   $('#'+challenge+'-translated-word').html('Extra').css('color','#18bc9c');
+  $('#'+challenge+'-answer').attr('placeholder','Enter Answer');
 };
 
 // Show's the answer and whether or not it was correct
-Question.prototype.answer = function (event) {
-  var button = event.toElement;
-  var challenge = $(button).attr('id');
+Question.prototype.answer = function (challenge) {
   this.userAnswer = $('#'+challenge+'-answer').val();
+  $('#'+challenge+'-answer').val('');
+  $('#'+challenge+'-answer').attr('placeholder','Click Next');
   this.checkUserAnswer();
   if(!this.isCorrect){
     $('#'+challenge+'-word').html('Fail').css('color','#bd3e25');
   } else {
     $('#'+challenge+'-word').html('Correct!').css('color','#fff');
   }
-  $('#'+challenge+'-translated-word').html(this.word+': Hola').css('color','#fff');
+  $('#'+challenge+'-translated-word').html(this.word+': '+this.translatedWord).css('color','#fff');
 };
 
 Question.prototype.getTranslation = function(word, langFrom,langTo ){
@@ -60,7 +75,7 @@ Question.prototype.checkUserAnswer = function(){
 Question.prototype.isAcceptable = function(){
   var count = 0;
   for (var i = 0; i < this.userAnswer.length; i++) {
-    if (this.translatedWord.word[i] !== this.userAnswer[i]){
+    if (this.translatedWord[i] !== this.userAnswer[i]){
       count++;
     }
   }
@@ -70,4 +85,4 @@ Question.prototype.isAcceptable = function(){
   else return true;
 };
 
-module.exports = Question;
+//module.exports = Question;

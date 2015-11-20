@@ -1,12 +1,16 @@
 var express = require('express');
 var router = express.Router();
-// var Question = require("../utilities/question");
+var crud = require("../logic/crud.js");
+var bt = require("bing-translate").init({
+  client_id: "Linquiztics",
+  client_secret: process.env.KEY_1
+});
 
 
 router.get('/user', function(req, res, next) {
-  // test = new Question();
-  // test.getTranslation("hello");
-  res.render('index', { title: 'Node-Translate' });
+  crud.handleGet(function(data){
+    res.json(data);
+  })
 });
 
 router.get('/', function(req, res, next) {
@@ -14,11 +18,14 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/user', function(req, res, next) {
-  res.render('index', { title: 'Node-Translate' });
+  var response = crud.handlePost(req.body.name);
+  res.json(response);
 });
 
-router.put('/user', function(req, res, next) {
-  res.render('index', { title: 'Node-Translate' });
+router.put('/user/:id', function(req, res, next) {
+  crud.handlePut(req.params.id, req.body.quizzes, function(data){
+    res.json(data);
+  });
 });
 
 // word library
@@ -31,6 +38,21 @@ router.post('/wordlibrary', function(req, res, next) {
 });
 
 
+router.get('/user/:id', function(req, res, next) {
+  crud.handleGetOne(req.params.id, function (data) {
+    res.json(data);
+  });
+});
+
+router.post('/translate', function(req, res, next) {
+  var response;
+  console.log(req.body);
+  bt.translate(req.body.word, "en", "es", function(err, result){
+    response = result.translated_text;
+    console.log("spanish?: "+response);
+    res.json(response);
+  });
+});
 
 
 module.exports = router;
