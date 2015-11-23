@@ -31,7 +31,7 @@ Quiz.prototype.updateResults = function () {
     for (var i = this.results.questionsAnswered; i < this.questions.length; i++) {
         if (this.questions[i].userAnswer !== null) {
             this.results.questionsAnswered++;
-            console.log(this.results.questionsAnswered);
+            // console.log(this.results.questionsAnswered);
             this.results.questionsRemaining--;
             if (this.questions[i].isCorrect) {
                 this.results.questionsCorrect++;

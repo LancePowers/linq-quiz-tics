@@ -19,7 +19,7 @@ $('#game-init-button').on('click', function (event) {
 // Practice button
 $('#practice').on('click', function (event) {
     event.preventDefault();
-    console.log("in practice: " + game.user.name);
+    // console.log("in practice: " + game.user.name);
     var difficulty = $('#' + this.id + '-difficulty option:selected').html();
     if ($(this).html() === 'Start' || $(this).html() === 'Next') {
         $(this).html('Answer');
@@ -32,19 +32,20 @@ $('#practice').on('click', function (event) {
 });
 
 // Sudden-death challenge init
-$('#start-sudden-death').on('click', function () {
+$(document).on('click','#start-sudden-death', function (event) {
     event.preventDefault();
+    console.log("clicked");
     game.quiz = new Quiz('sudden-death');
     $('#sudden-death-content').html(game.quiz.createQuizElement);
 });
 
-$('#start-twenty-questions').on('click', function () {
+$(document).on('click','#start-twenty-questions', function (event) {
     event.preventDefault();
     game.quiz = new Quiz('twenty-questions');
     $('#twenty-questions-content').html(game.quiz.createQuizElement);
 });
 
-$('#start-rapid-fire').on('click', function () {
+$(document).on('click','#start-rapid-fire', function (event) {
     event.preventDefault();
     game.quiz = new Quiz('rapid-fire');
     var timer = setTimeout(function () {

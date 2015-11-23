@@ -11,8 +11,8 @@ function Question(word){
   this.word = word;
   this.translatedWord = null;
   this.isCorrect = null;
-    console.log(game.langFrom);
-    console.log(game.langTo);
+    // console.log(game.langFrom);
+    // console.log(game.langTo);
 
   $.ajax({
     url: "/translate",

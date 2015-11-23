@@ -49,7 +49,7 @@ router.post('/translate', function(req, res, next) {
   console.log(req.body);
   bt.translate(req.body.word, req.body.langFrom, req.body.langTo, function(err, result){
     response = result.translated_text;
-    console.log("spanish?: "+response);
+    console.log(req.body.langTo+" : "+response);
     res.json(response);
   });
 });

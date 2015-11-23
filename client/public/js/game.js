@@ -71,7 +71,7 @@ Game.prototype.setUser = function () {
             method: "GET",
             url: '/user/' + id
         }).done(function (data) {
-            console.log(data);
+            // console.log(data);
             self.user = data[0];
         }).fail(function (err) {
             console.log(err);
@@ -118,7 +118,7 @@ Game.prototype.resetChallenges = function () {
         '<div class="row">'+
       '<div class="col-lg-8 col-lg-offset-2">'+
           '<div class="modal-body">'+
-              '<h2>CRapid Fire</h2>'+
+              '<h2>Rapid Fire</h2>'+
               '<hr class="star-primary">'+
               '<img src="img/portfolio/game.png" class="img-responsive img-centered" alt="">'+
               '<p>You\'ve got 10 minutes to prove you know the lingo gringo. What do you say?</p>'+
@@ -134,7 +134,7 @@ Game.prototype.resetChallenges = function () {
               '<hr class="star-primary">'+
               '<img src="img/portfolio/cake.png" class="img-responsive img-centered" alt="">'+
               '<p>20 questions to talk the talk. Get 5 wrong and you walk.</p>'+
-              '<button id="start-twenty-questions" type="button" class="btn btn-default challenge-btn"><i class="fa fa-times"></i> Close</button>'+
+              '<button id="start-twenty-questions" type="button" class="btn btn-default challenge-btn"><i class="fa fa-times"></i> Start</button>'+
           '</div>'+
       '</div>'+
   '</div>';
