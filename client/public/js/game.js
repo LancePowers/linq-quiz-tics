@@ -103,7 +103,7 @@ Game.prototype.resetChallenges = function () {
     var suddenDeathInfo =
         '<div class="row"> '+
         '<div class="col-lg-8 col-lg-offset-2">'+
-            '<div class="modal-body">'+
+            '<div class="modal-body">'  +
               '<div>'+
                 '<h2>Sudden Death</h2>+'+
                 '<hr class="star-primary">'+
