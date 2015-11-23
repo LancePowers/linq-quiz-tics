@@ -10,7 +10,7 @@ var bt = require("bing-translate").init({
 router.get('/user', function(req, res, next) {
   crud.handleGet(function(data){
     res.json(data);
-  })
+  });
 });
 
 router.get('/', function(req, res, next) {
@@ -47,9 +47,9 @@ router.get('/user/:id', function(req, res, next) {
 router.post('/translate', function(req, res, next) {
   var response;
   console.log(req.body);
-  bt.translate(req.body.word, "en", "es", function(err, result){
+  bt.translate(req.body.word, req.body.langFrom, req.body.langTo, function(err, result){
     response = result.translated_text;
-    console.log("spanish?: "+response);
+    console.log(req.body.langTo+" : "+response);
     res.json(response);
   });
 });

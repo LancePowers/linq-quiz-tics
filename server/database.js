@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 var Schema   = mongoose.Schema;
+var dotenv = require('dotenv');
+dotenv.load();
 
 var userSchema = new Schema(
   {
@@ -30,9 +32,9 @@ var userSchema = new Schema(
 );
 
 var User = mongoose.model('users', userSchema);
-
-mongoose.connect('mongodb://localhost/node-lingo');
+console.log(process.env.MONGO_URI);
+mongoose.connect(process.env.MONGO_URI);
 
 module.exports = {
   User: User
-}
+};
